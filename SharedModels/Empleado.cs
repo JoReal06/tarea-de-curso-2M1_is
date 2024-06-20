@@ -17,14 +17,14 @@ namespace SharedModels
         public string? segundoNombre { set; get; }
         public string primerApellido { set; get; }
         public string segundoApellido { set; get;}
-        public DateTime fechaDeNacimiento { set; get;  }
+        public DateOnly fechaDeNacimiento { set; get;  }
         public string sexo { set; get; }
         public string estadoCivil { set; get; }
         public string direccion { set; get; }
         public int? telefono { set; get; }
         public int? celular { set; get; }
-        public DateTime fechaDeContratacion { set; get; }
-        public DateTime fechaDeCierreDeContrato { set; get; }
+        public DateOnly fechaDeContratacion { set; get; }
+        public DateOnly fechaDeCierreDeContrato { set; get; }
         public decimal salarioOrdinario { set; get; }
         public bool estado { set; get; }
     }

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tarea de curso 2M1_is", "ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedModels", "SharedModels\SharedModels.csproj", "{7A0E6855-22DE-4ACE-9FF9-F0B111E685E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empresa", "Empresa\Empresa.csproj", "{8389DE7D-6BAA-45C7-91E4-D96EC85CE42E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Empresa_API", "Empresa\Empresa_API.csproj", "{8389DE7D-6BAA-45C7-91E4-D96EC85CE42E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
