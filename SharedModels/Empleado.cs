@@ -8,24 +8,26 @@ namespace SharedModels
 {
     public class Empleado
     {
-        public int Id { get; set; }
-        public int numEmpleado { set; get; }
-        public string numCedula {set; get;}
-        public int numInss  {set; get;}
-        public int numRuc {set; get;}
+        private int Id { get; set; }
+        private int numEmpleado { set; get; }
+        private string numCedula {set; get;}
+        private int numInss  {set; get;}
+        private int numRuc {set; get;}
         public string primerNombre{set; get;}
-        public string? segundoNombre { set; get; }
-        public string primerApellido { set; get; }
-        public string segundoApellido { set; get;}
-        public DateOnly fechaDeNacimiento { set; get;  }
-        public string sexo { set; get; }
-        public string estadoCivil { set; get; }
-        public string direccion { set; get; }
-        public int? telefono { set; get; }
-        public int? celular { set; get; }
-        public DateOnly fechaDeContratacion { set; get; }
-        public DateOnly fechaDeCierreDeContrato { set; get; }
-        public decimal salarioOrdinario { set; get; }
-        public bool estado { set; get; }
+        private string? segundoNombre { set; get; }
+        private string primerApellido { set; get; }
+        private string segundoApellido { set; get;}
+        private DateOnly fechaDeNacimiento { set; get;  }
+        private string sexo { set; get; }
+        private string estadoCivil { set; get; }
+        private string direccion { set; get; }
+        private int? telefono { set; get; }
+        private int? celular { set; get; }
+        private DateOnly fechaDeContratacion { set; get; }
+        private DateOnly fechaDeCierreDeContrato { set; get; }
+        private decimal salarioOrdinario { set; get; }
+        private bool estado { set; get; }
+        private bool riesgoLaboral { set; get; }
+        private bool nocturnidad {  set; get; }
     }
 }
