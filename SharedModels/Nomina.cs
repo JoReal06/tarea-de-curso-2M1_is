@@ -19,8 +19,10 @@ namespace SharedModels
         {
             //Ingresos totales
             decimal salarioXHora = (salarioBase / 30) / 8;
+            //cochon
+            decimal salarioXDia = salarioBase / 30;
             HorasExtraNetas = (horasExtras * 2) * salarioXHora;
-            IngresoNeto = salarioBase + comisiones + viaticoAlimenticioFijo + riesgoLaboral + otrosIngresos + HorasExtraNetas;
+            IngresoNeto = (salarioBase * salarioXDia) + comisiones + viaticoAlimenticioFijo + riesgoLaboral + otrosIngresos + HorasExtraNetas;
 
             //Deducciones
             inns = (IngresoNeto * 0.07M);
