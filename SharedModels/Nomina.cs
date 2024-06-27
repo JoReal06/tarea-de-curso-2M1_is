@@ -50,7 +50,7 @@ namespace SharedModels
                 - inns - irMensual - prestamoBancario - prestamoEmpresario - pensionAlimenticia - deduccionPorDaños;
         }
 
-
+        //hola rene
 
 
     }
