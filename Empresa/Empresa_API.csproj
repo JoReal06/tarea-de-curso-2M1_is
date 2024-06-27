@@ -21,4 +21,8 @@
     <ProjectReference Include="..\SharedModels\SharedModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Security\" />
+  </ItemGroup>
+
 </Project>

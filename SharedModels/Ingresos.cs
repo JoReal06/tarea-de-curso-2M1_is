@@ -8,12 +8,10 @@ namespace SharedModels
 {
     public class Ingresos
     {
-        // esta clase tiene que guardar todo lo vienen siendo lo ingresos de dinero del empleado 
-        // al igual que la dedecciones vas a registrar todos los  atributos y datos necesarios que se consideren como ingresos
-        // como  el salario base, los viaticos y etc...
-        private int Id { get; set; }
-        private int EmpleadoId { set; get; }
+        public int Id { get; set; }
+        public int EmpleadoId { set; get; }
         public decimal SalarioBase { set; get; }
+        public Empleado empleados { set; get; }
 
         //Aguinaldo depende de la fecha de entrada 
         public decimal Aguinaldo { set; get; }

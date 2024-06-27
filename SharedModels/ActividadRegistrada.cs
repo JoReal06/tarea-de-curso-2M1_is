@@ -11,7 +11,7 @@ namespace SharedModels
         public DateTime diaDeActividad { set; get; }
         public string Accion { set; get; }
         public string endpoint { set; get; }
-        public string entidadesInvolucradas { set; get; }
+        public string entidad { set; get; }
         public string usuario { get; set; }
     }
 }

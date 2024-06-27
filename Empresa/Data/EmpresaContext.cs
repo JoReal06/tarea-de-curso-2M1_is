@@ -9,6 +9,8 @@ namespace Empresa.Data
         DbSet<Empleado> empleados { set; get; }
         DbSet<Ingresos> ingresos { set; get; }
         DbSet<Deducciones> deducciones { set; get; }
+        
+        DbSet<Nomina> nominas { set; get; }
 
         public EmpresaContext(DbContextOptions<EmpresaContext> options) :
          base(options)

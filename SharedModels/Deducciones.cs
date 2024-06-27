@@ -8,10 +8,9 @@ namespace SharedModels
 {
     public class Deducciones
     {
-        // esta clase tiene que guardar lo que viene siendo las deduciones que tiene el empleado 
-        // vas a meter todos lo atributos o datos que el empleado tenga como deducciones
-        private int Id { set; get; }
-        private int empleadoId { set; get; }
+        public int Id { set; get; }
+        public int empleadoId { set; get; }
+        public Empleado empleado { set; get; }
 
         //seguro
         public decimal Inns { set; get; }
@@ -22,21 +21,21 @@ namespace SharedModels
         //En caso de prestarle a la empresa donde trabaja
         public decimal PrestamoEmpresario { set; get; }
 
-        public decimal PencionAlimenticia { set; get; }
+        public decimal PensionAlimenticia { set; get; }
 
         //En caso de romper algo en la empresa o que haya una perdida se paga
         //luego de impuestos y la empresa lo deduce en el pago de la nomina
         public decimal DeduccionPorDaños { set; get; }
 
         public Deducciones(int id, decimal inns, decimal prestamoBancario,
-            decimal prestamoEmpresario, decimal pencionAlimenticia,
+            decimal prestamoEmpresario, decimal pensionAlimenticia,
             decimal deduccionPorDaños)
         {
             Id = id;
             Inns = inns;
             PrestamoBancario = prestamoBancario;
             PrestamoEmpresario = prestamoEmpresario;
-            PencionAlimenticia = pencionAlimenticia;
+            PensionAlimenticia = pensionAlimenticia;
             DeduccionPorDaños = deduccionPorDaños;
         }
 

@@ -28,65 +28,222 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
+            panelIzquierdo = new Panel();
             button1 = new Button();
+            btnOpcional = new Button();
+            btnRegistro = new Button();
+            pictureBox1 = new PictureBox();
+            panelTitulo = new Panel();
+            btnRestaurar = new PictureBox();
+            btnExit = new PictureBox();
+            btnMaximizar = new PictureBox();
+            btnPestaña = new PictureBox();
+            btnIzquierdo = new PictureBox();
+            panelContenedor = new Panel();
+            panelIzquierdo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelTitulo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)btnRestaurar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnMaximizar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnPestaña).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnIzquierdo).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // panelIzquierdo
             // 
-            panel1.BackColor = SystemColors.ControlLight;
-            panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(211, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(470, 448);
-            panel1.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(27, 77);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(85, 23);
-            textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(36, 122);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(85, 23);
-            textBox2.TabIndex = 2;
+            panelIzquierdo.BackColor = Color.Indigo;
+            panelIzquierdo.Controls.Add(button1);
+            panelIzquierdo.Controls.Add(btnOpcional);
+            panelIzquierdo.Controls.Add(btnRegistro);
+            panelIzquierdo.Controls.Add(pictureBox1);
+            panelIzquierdo.Dock = DockStyle.Left;
+            panelIzquierdo.Location = new Point(0, 0);
+            panelIzquierdo.Name = "panelIzquierdo";
+            panelIzquierdo.Size = new Size(250, 650);
+            panelIzquierdo.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(71, 189);
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 48);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.Thistle;
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(12, 355);
             button1.Name = "button1";
-            button1.Size = new Size(59, 50);
-            button1.TabIndex = 3;
-            button1.Text = "button1";
+            button1.Size = new Size(220, 45);
+            button1.TabIndex = 4;
+            button1.Text = "Nominas";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // btnOpcional
+            // 
+            btnOpcional.Cursor = Cursors.Hand;
+            btnOpcional.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 48);
+            btnOpcional.FlatStyle = FlatStyle.Flat;
+            btnOpcional.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold);
+            btnOpcional.ForeColor = Color.Thistle;
+            btnOpcional.Location = new Point(12, 459);
+            btnOpcional.Name = "btnOpcional";
+            btnOpcional.Size = new Size(220, 45);
+            btnOpcional.TabIndex = 3;
+            btnOpcional.Text = "button3";
+            btnOpcional.UseVisualStyleBackColor = true;
+            // 
+            // btnRegistro
+            // 
+            btnRegistro.Cursor = Cursors.Hand;
+            btnRegistro.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 48);
+            btnRegistro.FlatStyle = FlatStyle.Flat;
+            btnRegistro.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegistro.ForeColor = Color.Thistle;
+            btnRegistro.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRegistro.Location = new Point(12, 259);
+            btnRegistro.Name = "btnRegistro";
+            btnRegistro.Size = new Size(220, 45);
+            btnRegistro.TabIndex = 1;
+            btnRegistro.Text = "Registro";
+            btnRegistro.UseVisualStyleBackColor = true;
+            btnRegistro.Click += btnRegistro_Click;
+            // 
+            // pictureBox1
+            // 
+            
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(220, 135);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            // 
+            // panelTitulo
+            // 
+            panelTitulo.BackColor = SystemColors.ControlLight;
+            panelTitulo.Controls.Add(btnRestaurar);
+            panelTitulo.Controls.Add(btnExit);
+            panelTitulo.Controls.Add(btnMaximizar);
+            panelTitulo.Controls.Add(btnPestaña);
+            panelTitulo.Controls.Add(btnIzquierdo);
+            panelTitulo.Dock = DockStyle.Top;
+            panelTitulo.Location = new Point(250, 0);
+            panelTitulo.Name = "panelTitulo";
+            panelTitulo.Size = new Size(1000, 65);
+            panelTitulo.TabIndex = 1;
+            panelTitulo.MouseDown += panelTitulo_MouseDown;
+            // 
+            // btnRestaurar
+            // 
+            btnRestaurar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnRestaurar.Cursor = Cursors.Hand;
+            btnRestaurar.Image = (Image)resources.GetObject("btnRestaurar.Image");
+            btnRestaurar.Location = new Point(885, 12);
+            btnRestaurar.Name = "btnRestaurar";
+            btnRestaurar.Size = new Size(50, 40);
+            btnRestaurar.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnRestaurar.TabIndex = 1;
+            btnRestaurar.TabStop = false;
+            btnRestaurar.Visible = false;
+            btnRestaurar.Click += btnMinimizar_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit.Cursor = Cursors.Hand;
+          
+            btnExit.Location = new Point(941, 12);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(50, 40);
+            btnExit.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnExit.TabIndex = 0;
+            btnExit.TabStop = false;
+            btnExit.Click += btnExit_Click;
+            // 
+            // btnMaximizar
+            // 
+            btnMaximizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximizar.Cursor = Cursors.Hand;
+           
+            btnMaximizar.Location = new Point(885, 12);
+            btnMaximizar.Name = "btnMaximizar";
+            btnMaximizar.Size = new Size(50, 40);
+            btnMaximizar.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnMaximizar.TabIndex = 3;
+            btnMaximizar.TabStop = false;
+            btnMaximizar.Click += btnMaximizar_Click;
+            // 
+            // btnPestaña
+            // 
+            btnPestaña.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPestaña.Cursor = Cursors.Hand;
+           
+            btnPestaña.Location = new Point(829, 12);
+            btnPestaña.Name = "btnPestaña";
+            btnPestaña.Size = new Size(50, 40);
+            btnPestaña.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnPestaña.TabIndex = 2;
+            btnPestaña.TabStop = false;
+            btnPestaña.Click += btnPestaña_Click;
+            // 
+            // btnIzquierdo
+            // 
+            btnIzquierdo.Cursor = Cursors.Hand;
+           
+            btnIzquierdo.Location = new Point(15, 12);
+            btnIzquierdo.Name = "btnIzquierdo";
+            btnIzquierdo.Size = new Size(47, 40);
+            btnIzquierdo.SizeMode = PictureBoxSizeMode.StretchImage;
+            btnIzquierdo.TabIndex = 0;
+            btnIzquierdo.TabStop = false;
+            btnIzquierdo.Click += btnIzquierdo_Click;
+            // 
+            // panelContenedor
+            // 
+            panelContenedor.Dock = DockStyle.Fill;
+            panelContenedor.Location = new Point(250, 65);
+            panelContenedor.Name = "panelContenedor";
+            panelContenedor.Size = new Size(1000, 585);
+            panelContenedor.TabIndex = 2;
+            // 
             // Principal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(681, 448);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(panel1);
+            ClientSize = new Size(1250, 650);
+            Controls.Add(panelContenedor);
+            Controls.Add(panelTitulo);
+            Controls.Add(panelIzquierdo);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Principal";
             Text = "Principal";
+            panelIzquierdo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelTitulo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)btnRestaurar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnExit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnMaximizar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnPestaña).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnIzquierdo).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Panel panel1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private Panel panelIzquierdo;
+        private Panel panelTitulo;
+        private Panel panelContenedor;
+        private PictureBox btnExit;
+        private PictureBox btnMaximizar;
+        private PictureBox btnPestaña;
+        private PictureBox btnRestaurar;
+        private PictureBox btnIzquierdo;
+        private PictureBox pictureBox1;
+        private Button btnOpcional;
+        private Button btnListas;
+        private Button btnRegistro;
         private Button button1;
     }
 }

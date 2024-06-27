@@ -1,9 +1,17 @@
-﻿namespace Empresa_API.Repository.IRepository
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using System.Linq.Expressions;
+
+namespace Empresa_API.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        Task<T> CreateAsync(T entity);
-        Task<T> GetAllAsync(T entity);
-        Task<T> GetAsync(T entity);
+        Task CreateAsync(T entity);
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null);
+        Task<T> GetAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true);
+        Task<T> GetById(int id);
+        Task DeleteAsync(T entity);
+        Task SaveChangesAsync();
+        Task<bool> ExistsAsync(Expression<Func<T, bool>>? filter = null);
+        Task<IDbContextTransaction> BeginTransactionAsync();
     }
 }
