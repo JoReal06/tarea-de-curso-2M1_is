@@ -33,12 +33,10 @@ namespace tarea_de_curso_2M1_is
 
         private void btn_incio_Click(object sender, EventArgs e)
         {
-            // hacer condcion de verificacion de usuario y de contraseña
-            
-            // si da error meter como resultado a ejecutar
-            // lb_aviso.visible = true;
+           
             Principal principal = new Principal();
-
+            this.Hide();
+            principal.Show();
         }
     }
 }

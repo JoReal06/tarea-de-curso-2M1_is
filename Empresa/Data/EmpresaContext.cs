@@ -6,16 +6,20 @@ namespace Empresa.Data
 {
     public class EmpresaContext: DbContext
     {
-        DbSet<Empleado> empleados { set; get; }
-        DbSet<Ingresos> ingresos { set; get; }
-        DbSet<Deducciones> deducciones { set; get; }
-        
-        DbSet<Nomina> nominas { set; get; }
+        public DbSet<Empleado> empleados { set; get; }
+        public DbSet<Ingresos> ingresosDeEmpleados { set; get; }
+        public DbSet<Deducciones> deduccionesDeEmpleados { set; get; }
+        public DbSet<Nomina> nominas { set; get; }
+        public DbSet<Usuario> usuarios { set; get; }
 
         public EmpresaContext(DbContextOptions<EmpresaContext> options) :
          base(options)
         {
 
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

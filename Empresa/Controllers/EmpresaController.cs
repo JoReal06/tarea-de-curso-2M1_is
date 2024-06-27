@@ -6,6 +6,6 @@ namespace Empresa_API.Controllers
     [ApiController]
     public class EmpresaController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioRepository
+        
     }
 }

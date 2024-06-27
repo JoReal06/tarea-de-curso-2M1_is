@@ -10,15 +10,27 @@ namespace SharedModels
 {
     public class Nomina
     {
-        // realiza los calculos necesarios para cada empleado, en base a sus ingresos  y deduciones y etc
+        private int id;
+        private int idEmpleado;
+        private int horasExtras;
 
+        private decimal salarioBase;
+        private decimal comisiones;
+        private decimal bonificaciones;
+        private decimal depreciacionVehiculo;
+        private decimal viaticoCobustible;
+        private decimal inns = 0M;
+        private decimal ir= 0M;
+        private decimal viaticoAlimenticioFijo;
+        private decimal viaticoAlimenticio;
+        private decimal riesgoLaboral;
+        private decimal otrosIngresos;
+        private decimal prestamoBancario;
+        private decimal prestamoEmpresario;
+        private decimal pensionAlimenticia;
+        private decimal deduccionPorDaños;
+        private decimal viaticoPorHospedaje;
 
-        private int id, idEmpleado, horasExtras;
-        private decimal salarioBase, comisiones, bonificaciones, depreciacionVehiculo, viaticoCobustible, inns, 
-            viaticoAlimenticioFijo, viaticoAlimenticio, riesgoLaboral, otrosIngresos,
-            prestamoBancario, prestamoEmpresario, pensionAlimenticia, deduccionPorDaños, viaticoPorHospedaje;
-
-        
         public decimal CalcularSalarioNeto(decimal IngresoNeto, decimal HorasExtraNetas, decimal diasTrabajados)
         {
             //Ingresos totales
@@ -29,7 +41,7 @@ namespace SharedModels
 
             //Deducciones
             inns = (IngresoNeto * 0.07M);
-            decimal ir = (IngresoNeto - inns) * 12;
+            ir = (IngresoNeto - inns) * 12;
             decimal irMensual = 0M;
 
             if (ir > 100000.01M && ir <= 200000M)
