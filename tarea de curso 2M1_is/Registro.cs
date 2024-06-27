@@ -13,24 +13,13 @@ namespace tarea_de_curso_2M1_is
 {
     public partial class Registro : Form
     {
-        public Registro()
+        private Principal _formPrincipal;
+        public Registro(Principal formPrincipal)
         {
+
             InitializeComponent();
-            errorProvider1 = new ErrorProvider();
-            txtPrimerNombre.TextChanged += new EventHandler(ValidarNombre);
-            txtSegundoNombre.TextChanged += new EventHandler(ValidarNombre);
-            txtPrimerApellido.TextChanged += new EventHandler(ValidarNombre);
-            txtSegundoApellido.TextChanged += new EventHandler(ValidarNombre);
-            txtTelefono.TextChanged += new EventHandler(ValidarTelefono);
-            txtNumeroCelular.TextChanged += new EventHandler(ValidarCelular);
-            txtNumeroDeCedula.TextChanged += new EventHandler(ValidarCedula);
-            txtDireccion.TextChanged += new EventHandler(ValidarDireccion);
-            txtNumeroDeInss.TextChanged += new EventHandler(ValidarNumeroInss);
-            txtNumeroRuc.TextChanged += new EventHandler(ValidarNumeroRuc);
-            txtFechaNacimiento.TextChanged += new EventHandler(ValidarFechaNacimiento);
-            txtFechaContratacion.TextChanged += new EventHandler(ValidarFechaContratacion);
-            txtFechaCierreContrato.TextChanged += new EventHandler(ValidarFechaCierreContrato);
-            btnGuardar.Click += new EventHandler(GuardarRegistro);
+            _formPrincipal = formPrincipal;
+            btnSiguiente.Enabled = false;
 
         }
         private void horaFecha_Tick(object sender, EventArgs e)
@@ -41,185 +30,246 @@ namespace tarea_de_curso_2M1_is
 
 
 
-
-        private void ValidarNombre(object sender, EventArgs e)
+        private void txtPrimerNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (!Regex.IsMatch(textBox.Text, @"^[a-zA-Z]{1,15}$"))
+            if (char.IsDigit(e.KeyChar))
             {
-                errorProvider1.SetError(textBox, "Solo letras, máximo 15 caracteres.");
+                e.Handled = true;
+            }
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (ValidarCampos())
+            {
+                MessageBox.Show("Validación exitosa. Avanzar al siguiente paso.");
+
+                LimpiarCampos();
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                MessageBox.Show("Por favor complete correctamente todos los campos.");
+            }
+            _formPrincipal.AbrirFormInPanel(new Nominas(_formPrincipal));
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
             }
         }
 
-        private void ValidarTelefono(object sender, EventArgs e)
+        private void txtTelefono_Leave(object sender, EventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (!Regex.IsMatch(textBox.Text, @"^\d{8}$"))
+            if (txtTelefono.Text.Length != 8)
             {
-                errorProvider1.SetError(textBox, "Debe ser un número de 8 dígitos.");
+                MessageBox.Show("El teléfono debe tener exactamente 8 dígitos.");
+                txtTelefono.Focus();
+            }
+        }
+
+        private void txtNumeroCelular_Leave(object sender, EventArgs e)
+        {
+            if (txtNumeroCelular.Text.Length != 8)
+            {
+                MessageBox.Show("El número de celular debe tener exactamente 8 dígitos.");
+                txtNumeroCelular.Focus();
+            }
+        }
+
+        private void txtNumeroCelular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroDeCedula_Leave(object sender, EventArgs e)
+        {
+            string pattern = @"^\d{3}-\d{6}-\d{4}[A-Za-z]$";
+            if (!Regex.IsMatch(txtNumeroDeCedula.Text, pattern))
+            {
+                MessageBox.Show("El formato del número de cédula no es válido. Debe ser 004-080807-1418B.");
+                txtNumeroDeCedula.Focus();
+            }
+        }
+
+        private void txtNumeroDeCedula_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != '-' && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+
+        }
+        private void txtNumeroRuc_Leave(object sender, EventArgs e)
+        {
+            if (txtNumeroRuc.Text.Length != 11)
+            {
+                MessageBox.Show("El número de RUC debe tener exactamente 11 dígitos.");
+                txtNumeroRuc.Focus();
+            }
+        }
+
+        private void txtNumeroRuc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroDeInss_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroDeInss_Leave(object sender, EventArgs e)
+        {
+            if (txtNumeroRuc.Text.Length != 11)
+            {
+                MessageBox.Show("El número de RUC debe tener exactamente 11 dígitos.");
+                txtNumeroRuc.Focus();
+            }
+        }
+        private void txtDireccion_Leave(object sender, EventArgs e)
+        {
+            string patternDireccion = @"^[A-Za-z0-9\s]+$";
+            if (!Regex.IsMatch(txtDireccion.Text, patternDireccion))
+            {
+                errorProvider1.SetError(txtDireccion, "La dirección solo puede contener números y letras.");
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                errorProvider1.SetError(txtDireccion, "");
             }
         }
-
-        private void ValidarCelular(object sender, EventArgs e)
+        private void txtDireccion_KeyPress(object sender, KeyPressEventArgs e)
         {
-            TextBox textBox = sender as TextBox;
-            if (!Regex.IsMatch(textBox.Text, @"^\d{8}$"))
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
             {
-                errorProvider1.SetError(textBox, "Debe ser un número de celular de 8 dígitos.");
+                e.Handled = true;
+            }
+        }
+        private bool ValidarCampos()
+        {
+            bool camposValidos = true;
+
+            if (txtTelefono.Text.Length != 8)
+            {
+                errorProvider1.SetError(txtTelefono, "El teléfono debe tener exactamente 8 dígitos.");
+                camposValidos = false;
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                errorProvider1.SetError(txtTelefono, "");
             }
-        }
 
-        private void ValidarCedula(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (!Regex.IsMatch(textBox.Text, @"^\d{3}-\d{6}-\d{4}[A-Za-z]$"))
+
+            if (txtNumeroCelular.Text.Length != 8)
             {
-                errorProvider1.SetError(textBox, "Formato incorrecto. Ejemplo: 004-080809-1416V");
+                errorProvider1.SetError(txtNumeroCelular, "El número de celular debe tener exactamente 8 dígitos.");
+                camposValidos = false;
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                errorProvider1.SetError(txtNumeroCelular, "");
             }
-        }
 
-        private void ValidarDireccion(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (textBox.Text.Length > 85)
+
+            if (txtNumeroDeInss.Text.Length != 11)
             {
-                errorProvider1.SetError(textBox, "Máximo 85 caracteres.");
+                errorProvider1.SetError(txtNumeroDeInss, "El número de INSS debe tener exactamente 11 dígitos.");
+                camposValidos = false;
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                errorProvider1.SetError(txtNumeroDeInss, "");
             }
-        }
 
-        private void ValidarNumeroInss(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (!Regex.IsMatch(textBox.Text, @"^\d+$"))
+            string patternCedula = @"^\d{3}-\d{6}-\d{4}[A-Za-z]$";
+            if (!Regex.IsMatch(txtNumeroDeCedula.Text, patternCedula))
             {
-                errorProvider1.SetError(textBox, "Solo números.");
+                errorProvider1.SetError(txtNumeroDeCedula, "El formato del número de cédula no es válido. Debe ser 004-080807-1418B.");
+                camposValidos = false;
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                errorProvider1.SetError(txtNumeroDeCedula, "");
             }
-        }
 
-        private void ValidarNumeroRuc(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (!Regex.IsMatch(textBox.Text, @"^\d+$"))
+
+            if (txtNumeroRuc.Text.Length != 11)
             {
-                errorProvider1.SetError(textBox, "Solo números.");
+                errorProvider1.SetError(txtNumeroRuc, "El número de RUC debe tener exactamente 11 dígitos.");
+                camposValidos = false;
             }
             else
             {
-                errorProvider1.SetError(textBox, string.Empty);
+                errorProvider1.SetError(txtNumeroRuc, "");
             }
+
+            if (dateTimePickerFContratacion.Value < new DateTime(1960, 1, 1) || dateTimePickerFContratacion.Value > DateTime.Today)
+            {
+                MessageBox.Show("La fecha de contratación debe estar entre 1960 y la fecha actual.");
+                camposValidos = false;
+            }
+
+            if (dateTimePickerFCierreContra.Value < dateTimePickerFCierreContra.Value || dateTimePickerFCierreContra.Value > new DateTime(2060, 12, 31))
+            {
+                MessageBox.Show("La fecha de cierre de contrato debe ser posterior a la fecha de contratación y no mayor al año 2060.");
+                camposValidos = false;
+            }
+
+            if (comboBoxSolteroCasado.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar una opción en el estado civil.");
+                camposValidos = false;
+            }
+
+            string patternDireccion = @"^[A-Za-z0-9\s]+$";
+            if (!Regex.IsMatch(txtDireccion.Text, patternDireccion))
+            {
+                MessageBox.Show("La dirección solo puede contener números y letras.");
+                camposValidos = false;
+            }
+
+            return camposValidos;
         }
 
-        private void ValidarFechaNacimiento(object sender, EventArgs e)
+        // limpiar todos los campos de textoo
+        private void LimpiarCampos()
         {
-            TextBox textBox = sender as TextBox;
-            if (DateTime.TryParse(textBox.Text, out DateTime fecha))
+            txtTelefono.Clear();
+            txtNumeroCelular.Clear();
+            txtNumeroDeInss.Clear();
+            txtNumeroDeCedula.Clear();
+            txtNumeroRuc.Clear();
+            comboBoxSolteroCasado.SelectedIndex = -1;
+            txtDireccion.Clear();
+            // ñimpiar errores del errorProvider
+            errorProvider1.Clear();
+        }
+
+        // evento del botón guardar
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (ValidarCampos())
             {
-                if (fecha > DateTime.Now.AddYears(-100))
-                {
-                    errorProvider1.SetError(textBox, "Fecha de nacimiento no puede ser mayor a 100 años.");
-                }
-                else
-                {
-                    errorProvider1.SetError(textBox, string.Empty);
-                }
+                MessageBox.Show("Datos guardados correctamente.");
+                LimpiarCampos();
             }
             else
             {
-                errorProvider1.SetError(textBox, "Formato de fecha incorrecto.");
+                MessageBox.Show("Por favor complete correctamente todos los campos.");
             }
         }
-
-        private void ValidarFechaContratacion(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (DateTime.TryParse(textBox.Text, out DateTime fecha))
-            {
-                if (fecha > DateTime.Now.AddYears(-70))
-                {
-                    errorProvider1.SetError(textBox, "Fecha de contratación no puede ser mayor a 70 años.");
-                }
-                else
-                {
-                    errorProvider1.SetError(textBox, string.Empty);
-                }
-            }
-            else
-            {
-                errorProvider1.SetError(textBox, "Formato de fecha incorrecto.");
-            }
-        }
-
-        private void ValidarFechaCierreContrato(object sender, EventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (DateTime.TryParse(textBox.Text, out DateTime fecha))
-            {
-                if (fecha < DateTime.Now)
-                {
-                    errorProvider1.SetError(textBox, "Fecha de cierre de contrato no puede ser antes de la fecha actual.");
-                }
-                else
-                {
-                    errorProvider1.SetError(textBox, string.Empty);
-                }
-            }
-            else
-            {
-                errorProvider1.SetError(textBox, "Formato de fecha incorrecto.");
-            }
-        }
-
-        private void GuardarRegistro(object sender, EventArgs e)
-        {
-            if (ValidarFormulario())
-            {
-                // Lógica para guardar el registro
-                MessageBox.Show("Registro guardado correctamente.");
-            }
-            else
-            {
-                MessageBox.Show("Por favor, corrige los errores en el formulario.");
-            }
-        }
-
-        private bool ValidarFormulario()
-        {
-            foreach (Control control in this.Controls)
-            {
-                if (control is TextBox textBox && !string.IsNullOrEmpty(errorProvider1.GetError(textBox)))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-
-
 
         //------------
         private void label1_Click(object sender, EventArgs e)
@@ -249,17 +299,6 @@ namespace tarea_de_curso_2M1_is
 
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPrimerNombre_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
+        
     }
 }

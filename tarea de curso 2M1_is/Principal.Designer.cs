@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             panelIzquierdo = new Panel();
-            button1 = new Button();
+            btnNominas = new Button();
             btnOpcional = new Button();
             btnRegistro = new Button();
             pictureBox1 = new PictureBox();
@@ -54,7 +54,7 @@
             // panelIzquierdo
             // 
             panelIzquierdo.BackColor = Color.Indigo;
-            panelIzquierdo.Controls.Add(button1);
+            panelIzquierdo.Controls.Add(btnNominas);
             panelIzquierdo.Controls.Add(btnOpcional);
             panelIzquierdo.Controls.Add(btnRegistro);
             panelIzquierdo.Controls.Add(pictureBox1);
@@ -64,21 +64,21 @@
             panelIzquierdo.Size = new Size(250, 650);
             panelIzquierdo.TabIndex = 0;
             // 
-            // button1
+            // btnNominas
             // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 48);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.Thistle;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(12, 355);
-            button1.Name = "button1";
-            button1.Size = new Size(220, 45);
-            button1.TabIndex = 4;
-            button1.Text = "Nominas";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnNominas.Cursor = Cursors.Hand;
+            btnNominas.FlatAppearance.MouseOverBackColor = Color.FromArgb(45, 45, 48);
+            btnNominas.FlatStyle = FlatStyle.Flat;
+            btnNominas.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNominas.ForeColor = Color.Thistle;
+            btnNominas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnNominas.Location = new Point(12, 355);
+            btnNominas.Name = "btnNominas";
+            btnNominas.Size = new Size(220, 45);
+            btnNominas.TabIndex = 4;
+            btnNominas.Text = "Nominas";
+            btnNominas.UseVisualStyleBackColor = true;
+            btnNominas.Click += button1_Click;
             // 
             // btnOpcional
             // 
@@ -112,7 +112,7 @@
             // 
             // pictureBox1
             // 
-            
+            pictureBox1.Image = Properties.Resources.freepik_gradient_developers_coding_logo_20240622195010Qks8;
             pictureBox1.Location = new Point(12, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(220, 135);
@@ -153,7 +153,7 @@
             // 
             btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnExit.Cursor = Cursors.Hand;
-          
+            btnExit.Image = Properties.Resources.Exit;
             btnExit.Location = new Point(941, 12);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(50, 40);
@@ -166,7 +166,7 @@
             // 
             btnMaximizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMaximizar.Cursor = Cursors.Hand;
-           
+            btnMaximizar.Image = Properties.Resources.Maximizar;
             btnMaximizar.Location = new Point(885, 12);
             btnMaximizar.Name = "btnMaximizar";
             btnMaximizar.Size = new Size(50, 40);
@@ -179,7 +179,7 @@
             // 
             btnPestaña.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPestaña.Cursor = Cursors.Hand;
-           
+            btnPestaña.Image = Properties.Resources.Dejar;
             btnPestaña.Location = new Point(829, 12);
             btnPestaña.Name = "btnPestaña";
             btnPestaña.Size = new Size(50, 40);
@@ -191,7 +191,7 @@
             // btnIzquierdo
             // 
             btnIzquierdo.Cursor = Cursors.Hand;
-           
+            btnIzquierdo.Image = Properties.Resources.Opciones;
             btnIzquierdo.Location = new Point(15, 12);
             btnIzquierdo.Name = "btnIzquierdo";
             btnIzquierdo.Size = new Size(47, 40);
@@ -242,8 +242,8 @@
         private PictureBox btnIzquierdo;
         private PictureBox pictureBox1;
         private Button btnOpcional;
-        private Button btnListas;
+        //private Button btnListas;
         private Button btnRegistro;
-        private Button button1;
+        private Button btnNominas;
     }
 }

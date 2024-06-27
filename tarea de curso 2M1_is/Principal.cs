@@ -73,7 +73,7 @@ namespace tarea_de_curso_2M1_is
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
-        private void AbrirFormInPanel(object FormRegistro)
+        public void AbrirFormInPanel(object FormRegistro)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace tarea_de_curso_2M1_is
         }
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            AbrirFormInPanel(new Registro());
+            AbrirFormInPanel(new Registro(this));
         }
 
         private void Principal_Resize(object sender, EventArgs e)
@@ -113,7 +113,7 @@ namespace tarea_de_curso_2M1_is
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AbrirFormInPanel(new Nominas());
+            AbrirFormInPanel(new Nominas(this));
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,20 +10,22 @@ namespace SharedModels
 {
     public class Nomina
     {
+        // realiza los calculos necesarios para cada empleado, en base a sus ingresos  y deduciones y etc
+
+
         private int id, idEmpleado, horasExtras;
-        private decimal salarioBase, aguinaldo, comisiones, bonificaciones, depreciacionVehiculo, viaticoCobustible, inns,
+        private decimal salarioBase, comisiones, bonificaciones, depreciacionVehiculo, viaticoCobustible, inns, 
             viaticoAlimenticioFijo, viaticoAlimenticio, riesgoLaboral, otrosIngresos,
             prestamoBancario, prestamoEmpresario, pensionAlimenticia, deduccionPorDaños, viaticoPorHospedaje;
 
-
-        public decimal CalcularSalarioNeto(decimal IngresoNeto, decimal HorasExtraNetas)
+        
+        public decimal CalcularSalarioNeto(decimal IngresoNeto, decimal HorasExtraNetas, decimal diasTrabajados)
         {
             //Ingresos totales
             decimal salarioXHora = (salarioBase / 30) / 8;
-            //cochon
-            decimal salarioXDia = salarioBase / 30;
+            decimal SalarioXDia = salarioBase / 30;
             HorasExtraNetas = (horasExtras * 2) * salarioXHora;
-            IngresoNeto = (salarioBase * salarioXDia) + comisiones + viaticoAlimenticioFijo + riesgoLaboral + otrosIngresos + HorasExtraNetas;
+            IngresoNeto = (SalarioXDia * diasTrabajados) + comisiones + viaticoAlimenticioFijo + riesgoLaboral + otrosIngresos + HorasExtraNetas;
 
             //Deducciones
             inns = (IngresoNeto * 0.07M);
@@ -51,9 +54,6 @@ namespace SharedModels
             return SalarioFinal = IngresoNeto + depreciacionVehiculo + viaticoCobustible + bonificaciones + viaticoAlimenticio + viaticoPorHospedaje
                 - inns - irMensual - prestamoBancario - prestamoEmpresario - pensionAlimenticia - deduccionPorDaños;
         }
-
-        //hola rene
-
 
     }
 }

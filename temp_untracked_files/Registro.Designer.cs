@@ -31,13 +31,13 @@
             components = new System.ComponentModel.Container();
             pctbSuperior = new PictureBox();
             panelCentral = new Panel();
-            dateTimePickerFCierreContra = new DateTimePicker();
-            dateTimePickerFContratacion = new DateTimePicker();
-            dateTimePickerFnacimiento = new DateTimePicker();
+            txtFechaNacimiento = new TextBox();
             groupBoxSiONo = new GroupBox();
             rdbtNo = new RadioButton();
             rdbtSi = new RadioButton();
+            txtFechaCierreContrato = new TextBox();
             txtNumeroCelular = new TextBox();
+            txtFechaContratacion = new TextBox();
             txtNumeroRuc = new TextBox();
             groupBoxFemeninoMasculino = new GroupBox();
             rbtnFemenino = new RadioButton();
@@ -85,21 +85,21 @@
             // 
             pctbSuperior.BackColor = Color.Transparent;
             pctbSuperior.Dock = DockStyle.Top;
-            pctbSuperior.Image = Properties.Resources.bordeopcion;
+            //pctbSuperior.Image = Properties.Resources.bordeopcion;
             pctbSuperior.Location = new Point(0, 0);
             pctbSuperior.Name = "pctbSuperior";
-            pctbSuperior.Size = new Size(991, 61);
+            pctbSuperior.Size = new Size(991, 62);
             pctbSuperior.TabIndex = 0;
             pctbSuperior.TabStop = false;
             // 
             // panelCentral
             // 
             panelCentral.AutoSize = true;
-            panelCentral.Controls.Add(dateTimePickerFCierreContra);
-            panelCentral.Controls.Add(dateTimePickerFContratacion);
-            panelCentral.Controls.Add(dateTimePickerFnacimiento);
+            panelCentral.Controls.Add(txtFechaNacimiento);
             panelCentral.Controls.Add(groupBoxSiONo);
+            panelCentral.Controls.Add(txtFechaCierreContrato);
             panelCentral.Controls.Add(txtNumeroCelular);
+            panelCentral.Controls.Add(txtFechaContratacion);
             panelCentral.Controls.Add(txtNumeroRuc);
             panelCentral.Controls.Add(groupBoxFemeninoMasculino);
             panelCentral.Controls.Add(comboBoxSolteroCasado);
@@ -132,37 +132,25 @@
             panelCentral.Controls.Add(txtPrimerNombre);
             panelCentral.Controls.Add(label1);
             panelCentral.Dock = DockStyle.Fill;
-            panelCentral.Location = new Point(0, 61);
+            panelCentral.Location = new Point(0, 62);
             panelCentral.Name = "panelCentral";
-            panelCentral.Size = new Size(991, 528);
+            panelCentral.Size = new Size(991, 527);
             panelCentral.TabIndex = 1;
             // 
-            // dateTimePickerFCierreContra
+            // txtFechaNacimiento
             // 
-            dateTimePickerFCierreContra.Location = new Point(691, 365);
-            dateTimePickerFCierreContra.Name = "dateTimePickerFCierreContra";
-            dateTimePickerFCierreContra.Size = new Size(272, 27);
-            dateTimePickerFCierreContra.TabIndex = 43;
-            // 
-            // dateTimePickerFContratacion
-            // 
-            dateTimePickerFContratacion.Location = new Point(208, 365);
-            dateTimePickerFContratacion.Name = "dateTimePickerFContratacion";
-            dateTimePickerFContratacion.Size = new Size(266, 27);
-            dateTimePickerFContratacion.TabIndex = 42;
-            // 
-            // dateTimePickerFnacimiento
-            // 
-            dateTimePickerFnacimiento.Location = new Point(505, 149);
-            dateTimePickerFnacimiento.Name = "dateTimePickerFnacimiento";
-            dateTimePickerFnacimiento.Size = new Size(279, 27);
-            dateTimePickerFnacimiento.TabIndex = 41;
+            txtFechaNacimiento.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            txtFechaNacimiento.BackColor = Color.Silver;
+            txtFechaNacimiento.Location = new Point(506, 149);
+            txtFechaNacimiento.Name = "txtFechaNacimiento";
+            txtFechaNacimiento.Size = new Size(145, 27);
+            txtFechaNacimiento.TabIndex = 40;
             // 
             // groupBoxSiONo
             // 
             groupBoxSiONo.Controls.Add(rdbtNo);
             groupBoxSiONo.Controls.Add(rdbtSi);
-            groupBoxSiONo.Location = new Point(859, 253);
+            groupBoxSiONo.Location = new Point(859, 254);
             groupBoxSiONo.Name = "groupBoxSiONo";
             groupBoxSiONo.Size = new Size(120, 47);
             groupBoxSiONo.TabIndex = 39;
@@ -190,25 +178,37 @@
             rdbtSi.Text = "Si";
             rdbtSi.UseVisualStyleBackColor = true;
             // 
+            // txtFechaCierreContrato
+            // 
+            txtFechaCierreContrato.BackColor = Color.Silver;
+            txtFechaCierreContrato.Location = new Point(616, 364);
+            txtFechaCierreContrato.Name = "txtFechaCierreContrato";
+            txtFechaCierreContrato.Size = new Size(171, 27);
+            txtFechaCierreContrato.TabIndex = 37;
+            // 
             // txtNumeroCelular
             // 
             txtNumeroCelular.BackColor = Color.Silver;
-            txtNumeroCelular.Location = new Point(480, 315);
+            txtNumeroCelular.Location = new Point(480, 314);
             txtNumeroCelular.Name = "txtNumeroCelular";
             txtNumeroCelular.Size = new Size(193, 27);
             txtNumeroCelular.TabIndex = 36;
-            txtNumeroCelular.KeyPress += txtNumeroCelular_KeyPress;
-            txtNumeroCelular.Leave += txtNumeroCelular_Leave;
+            // 
+            // txtFechaContratacion
+            // 
+            txtFechaContratacion.BackColor = Color.Silver;
+            txtFechaContratacion.Location = new Point(208, 358);
+            txtFechaContratacion.Name = "txtFechaContratacion";
+            txtFechaContratacion.Size = new Size(134, 27);
+            txtFechaContratacion.TabIndex = 35;
             // 
             // txtNumeroRuc
             // 
             txtNumeroRuc.BackColor = Color.Silver;
-            txtNumeroRuc.Location = new Point(162, 309);
+            txtNumeroRuc.Location = new Point(162, 310);
             txtNumeroRuc.Name = "txtNumeroRuc";
             txtNumeroRuc.Size = new Size(247, 27);
             txtNumeroRuc.TabIndex = 34;
-            txtNumeroRuc.KeyPress += txtNumeroRuc_KeyPress;
-            txtNumeroRuc.Leave += txtNumeroRuc_Leave;
             // 
             // groupBoxFemeninoMasculino
             // 
@@ -223,7 +223,7 @@
             // rbtnFemenino
             // 
             rbtnFemenino.AutoSize = true;
-            rbtnFemenino.Location = new Point(109, 27);
+            rbtnFemenino.Location = new Point(109, 26);
             rbtnFemenino.Name = "rbtnFemenino";
             rbtnFemenino.Size = new Size(95, 24);
             rbtnFemenino.TabIndex = 31;
@@ -234,7 +234,7 @@
             // 
             rbtnMasculno.AutoSize = true;
             rbtnMasculno.Checked = true;
-            rbtnMasculno.Location = new Point(6, 27);
+            rbtnMasculno.Location = new Point(6, 26);
             rbtnMasculno.Name = "rbtnMasculno";
             rbtnMasculno.Size = new Size(97, 24);
             rbtnMasculno.TabIndex = 30;
@@ -246,8 +246,7 @@
             // 
             comboBoxSolteroCasado.BackColor = Color.Silver;
             comboBoxSolteroCasado.FormattingEnabled = true;
-            comboBoxSolteroCasado.Items.AddRange(new object[] { "\"Soltero\"", "\"Casado\"", "\"Viudo\"", "\"Es complicado\"" });
-            comboBoxSolteroCasado.Location = new Point(136, 405);
+            comboBoxSolteroCasado.Location = new Point(782, 149);
             comboBoxSolteroCasado.Name = "comboBoxSolteroCasado";
             comboBoxSolteroCasado.Size = new Size(151, 28);
             comboBoxSolteroCasado.TabIndex = 32;
@@ -257,10 +256,8 @@
             txtTelefono.BackColor = Color.Silver;
             txtTelefono.Location = new Point(777, 317);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new Size(159, 27);
+            txtTelefono.Size = new Size(160, 27);
             txtTelefono.TabIndex = 29;
-            txtTelefono.KeyPress += txtTelefono_KeyPress;
-            txtTelefono.Leave += txtTelefono_Leave;
             // 
             // txtNumeroDeInss
             // 
@@ -269,18 +266,14 @@
             txtNumeroDeInss.Name = "txtNumeroDeInss";
             txtNumeroDeInss.Size = new Size(199, 27);
             txtNumeroDeInss.TabIndex = 28;
-            txtNumeroDeInss.KeyPress += txtNumeroDeInss_KeyPress;
-            txtNumeroDeInss.Leave += txtNumeroDeInss_Leave;
             // 
             // txtNumeroDeCedula
             // 
             txtNumeroDeCedula.BackColor = Color.Silver;
-            txtNumeroDeCedula.Location = new Point(184, 259);
+            txtNumeroDeCedula.Location = new Point(184, 258);
             txtNumeroDeCedula.Name = "txtNumeroDeCedula";
             txtNumeroDeCedula.Size = new Size(225, 27);
             txtNumeroDeCedula.TabIndex = 27;
-            txtNumeroDeCedula.KeyPress += txtNumeroDeCedula_KeyPress;
-            txtNumeroDeCedula.Leave += txtNumeroDeCedula_Leave;
             // 
             // btnSiguiente
             // 
@@ -288,13 +281,12 @@
             btnSiguiente.BackColor = Color.Linen;
             btnSiguiente.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold);
             btnSiguiente.ForeColor = Color.DarkSlateGray;
-            btnSiguiente.Location = new Point(681, 445);
+            btnSiguiente.Location = new Point(544, 437);
             btnSiguiente.Name = "btnSiguiente";
-            btnSiguiente.Size = new Size(171, 55);
+            btnSiguiente.Size = new Size(172, 55);
             btnSiguiente.TabIndex = 24;
             btnSiguiente.Text = "Siguiente";
             btnSiguiente.UseVisualStyleBackColor = false;
-            btnSiguiente.Click += btnSiguiente_Click;
             // 
             // btnGuardar
             // 
@@ -302,9 +294,9 @@
             btnGuardar.BackColor = Color.Linen;
             btnGuardar.Font = new Font("Century Gothic", 16.2F, FontStyle.Bold);
             btnGuardar.ForeColor = Color.DarkSlateGray;
-            btnGuardar.Location = new Point(428, 445);
+            btnGuardar.Location = new Point(254, 437);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(171, 55);
+            btnGuardar.Size = new Size(172, 55);
             btnGuardar.TabIndex = 23;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -328,7 +320,7 @@
             lblHora.AutoSize = true;
             lblHora.Font = new Font("Century Gothic", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHora.ForeColor = Color.Teal;
-            lblHora.Location = new Point(789, 13);
+            lblHora.Location = new Point(788, 14);
             lblHora.Name = "lblHora";
             lblHora.Size = new Size(97, 28);
             lblHora.TabIndex = 21;
@@ -341,23 +333,19 @@
             txtDireccion.BackColor = Color.Silver;
             txtDireccion.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtDireccion.Location = new Point(123, 203);
-            txtDireccion.Multiline = true;
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(487, 45);
+            txtDireccion.Size = new Size(481, 26);
             txtDireccion.TabIndex = 20;
             txtDireccion.TextChanged += textBox2_TextChanged;
-            txtDireccion.KeyPress += txtDireccion_KeyPress;
-            txtDireccion.Leave += txtDireccion_Leave;
             // 
             // txtSegundoApellido
             // 
             txtSegundoApellido.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             txtSegundoApellido.BackColor = Color.Silver;
-            txtSegundoApellido.Location = new Point(181, 149);
+            txtSegundoApellido.Location = new Point(180, 149);
             txtSegundoApellido.Name = "txtSegundoApellido";
             txtSegundoApellido.Size = new Size(145, 27);
             txtSegundoApellido.TabIndex = 19;
-            txtSegundoApellido.KeyPress += txtPrimerNombre_KeyPress;
             // 
             // txtPrimerApellido
             // 
@@ -367,17 +355,15 @@
             txtPrimerApellido.Name = "txtPrimerApellido";
             txtPrimerApellido.Size = new Size(145, 27);
             txtPrimerApellido.TabIndex = 18;
-            txtPrimerApellido.KeyPress += txtPrimerNombre_KeyPress;
             // 
             // txtSegundoNombre
             // 
             txtSegundoNombre.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             txtSegundoNombre.BackColor = Color.Silver;
-            txtSegundoNombre.Location = new Point(480, 107);
+            txtSegundoNombre.Location = new Point(480, 106);
             txtSegundoNombre.Name = "txtSegundoNombre";
             txtSegundoNombre.Size = new Size(145, 27);
             txtSegundoNombre.TabIndex = 17;
-            txtSegundoNombre.KeyPress += txtPrimerNombre_KeyPress;
             // 
             // label14
             // 
@@ -393,7 +379,7 @@
             // 
             label13.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label13.AutoSize = true;
-            label13.Location = new Point(490, 370);
+            label13.Location = new Point(415, 365);
             label13.Name = "label13";
             label13.Size = new Size(195, 20);
             label13.TabIndex = 15;
@@ -433,7 +419,7 @@
             // 
             label9.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label9.AutoSize = true;
-            label9.Location = new Point(41, 408);
+            label9.Location = new Point(687, 152);
             label9.Name = "label9";
             label9.Size = new Size(89, 20);
             label9.TabIndex = 11;
@@ -453,7 +439,7 @@
             // 
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label7.AutoSize = true;
-            label7.Location = new Point(347, 152);
+            label7.Location = new Point(348, 152);
             label7.Name = "label7";
             label7.Size = new Size(152, 20);
             label7.TabIndex = 9;
@@ -503,7 +489,7 @@
             // 
             lblPrimerApellido.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblPrimerApellido.AutoSize = true;
-            lblPrimerApellido.Location = new Point(631, 107);
+            lblPrimerApellido.Location = new Point(631, 106);
             lblPrimerApellido.Name = "lblPrimerApellido";
             lblPrimerApellido.Size = new Size(116, 20);
             lblPrimerApellido.TabIndex = 4;
@@ -523,7 +509,7 @@
             // 
             lblSegundoNombre.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblSegundoNombre.AutoSize = true;
-            lblSegundoNombre.Location = new Point(344, 107);
+            lblSegundoNombre.Location = new Point(344, 106);
             lblSegundoNombre.Name = "lblSegundoNombre";
             lblSegundoNombre.Size = new Size(130, 20);
             lblSegundoNombre.TabIndex = 2;
@@ -538,13 +524,12 @@
             txtPrimerNombre.Size = new Size(163, 27);
             txtPrimerNombre.TabIndex = 1;
             txtPrimerNombre.TextChanged += textBox1_TextChanged;
-            txtPrimerNombre.KeyPress += txtPrimerNombre_KeyPress;
             // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label1.AutoSize = true;
-            label1.Location = new Point(42, 107);
+            label1.Location = new Point(42, 106);
             label1.Name = "label1";
             label1.Size = new Size(114, 20);
             label1.TabIndex = 0;
@@ -562,7 +547,7 @@
             lblTitulo.BackColor = Color.MidnightBlue;
             lblTitulo.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitulo.ForeColor = Color.AliceBlue;
-            lblTitulo.Location = new Point(341, 19);
+            lblTitulo.Location = new Point(341, 18);
             lblTitulo.Name = "lblTitulo";
             lblTitulo.Size = new Size(332, 27);
             lblTitulo.TabIndex = 2;
@@ -639,12 +624,11 @@
         private TextBox txtFechaContratacion;
         private GroupBox groupBoxSiONo;
         private RadioButton rdbtSi;
+        private TextBox txtFechaCierreContrato;
         private RadioButton rdbtNo;
         private Label lblTitulo;
         private TextBox txtFechaNacimiento;
         private ErrorProvider errorProvider1;
-        private DateTimePicker dateTimePickerFnacimiento;
-        private DateTimePicker dateTimePickerFCierreContra;
-        private DateTimePicker dateTimePickerFContratacion;
+
     }
 }
