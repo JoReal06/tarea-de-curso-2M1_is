@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedModels.Dto;
 using SharedModels;
+using Empresa_API_FINAL.FIltros;
 
 namespace Empresa_API_FINAL.Controllers
 {
@@ -31,6 +32,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
+        [ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<IngresosReadDto>>> GetIngresos()
@@ -52,6 +54,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
+        [ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -73,7 +76,7 @@ namespace Empresa_API_FINAL.Controllers
                 if (ingreso == null)
                 {
                     _logger.LogWarning($"No se encontró ningun ingreso con ese ID: {id}");
-                    return NotFound("ingreso no encontrada.");
+                    return NotFound("ingreso no encontrado.");
                 }
 
                 return Ok(_mapper.Map<NominaReadDto>(ingreso));
@@ -87,6 +90,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
+        [ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -94,8 +98,8 @@ namespace Empresa_API_FINAL.Controllers
         {
             if (createDto == null)
             {
-                _logger.LogError("Se recibió una Ingresos nula en la solicitud.");
-                return BadRequest("el ingreso no puede ser nula.");
+                _logger.LogError("Se recibió un ingresos nulo en la solicitud.");
+                return BadRequest("el ingreso no puede ser nulo.");
             }
 
             try
@@ -121,9 +125,9 @@ namespace Empresa_API_FINAL.Controllers
 
                 if (existeIngreso != null)
                 {
-                    _logger.LogWarning($"La ingreso para el empleado con ID '{createDto.EmpleadoId}");
+                    _logger.LogWarning($"El ingreso para el empleado con ID '{createDto.EmpleadoId}");
                     ModelState.AddModelError("ingreso ya existente",
-                        "¡La ingreso ya existe!");
+                        "¡El ingreso ya existe!");
                     return BadRequest(ModelState);
                 }
 
@@ -139,7 +143,7 @@ namespace Empresa_API_FINAL.Controllers
 
                 await _ingresosRepository.CreateAsync(nuevoIngreso);
 
-                _logger.LogInformation($"Nuevo ingreso creada con ID: " +
+                _logger.LogInformation($"Nuevo ingreso creado con ID: " +
                     $"{nuevoIngreso.Id}");
                 return CreatedAtAction(nameof(GetIngreso),
                     new { id = nuevoIngreso.Id }, nuevoIngreso);
@@ -148,11 +152,12 @@ namespace Empresa_API_FINAL.Controllers
             {
                 _logger.LogError($"Error al crear un nuevo ingreso: {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error interno del servidor al crear una nueva ingresos.");
+                    "Error interno del servidor al crear un nuevo ingreso.");
             }
         }
 
         [HttpPut("{id}")]
+        [ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -188,7 +193,7 @@ namespace Empresa_API_FINAL.Controllers
                     return BadRequest(ModelState);
                 }
 
-                // Actualizar solo las propiedades necesarias del estudiante existente
+                // Actualizar solo las propiedades necesarias del empleado existente
                 _mapper.Map(updateDto, existeIngreso);
 
                 await _ingresosRepository.SaveChangesAsync();
@@ -221,6 +226,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -234,12 +240,12 @@ namespace Empresa_API_FINAL.Controllers
                 if (Ingreso == null)
                 {
                     _logger.LogInformation($"Eliminando ingreso con ID: {id}");
-                    return NotFound("ingreso no encontrada.");
+                    return NotFound("Ingreso no encontrado.");
                 }
 
                 await _ingresosRepository.DeleteAsync(Ingreso);
 
-                _logger.LogInformation($"Ingreso con el ID {id} eliminada correctamente.");
+                _logger.LogInformation($"Ingreso con el ID {id} eliminado correctamente.");
                 return NoContent();
             }
             catch (Exception ex)
