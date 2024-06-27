@@ -1,14 +1,11 @@
-using Empresa.Data;
+using Empresa_API_FINAL.DATA;
 using Microsoft.EntityFrameworkCore;
-using SharedModels;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<EmpresaContext>(options => options.UseSqlServer((builder.Configuration.GetConnectionString("DefaultConnection"))));
-
-
+builder.Services.AddDbContext<EmpresaContext>(options =>
+   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

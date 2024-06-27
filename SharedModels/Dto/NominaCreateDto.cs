@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels
+namespace SharedModels.Dto
 {
-    public class Nomina
+    public class NominaCreateDto
     {
-        public int Id { set; get; }
+        [Required]
+        public int NominaId { get; set; }
+        [Required]
         public int EmpleadoId { set; get; }
+
         public int horasExtras { set; get; }
 
         public decimal salarioBase { set; get; }
@@ -30,8 +32,5 @@ namespace SharedModels
         public decimal? pensionAlimenticia { set; get; }
         public decimal? deduccionPorDaños { set; get; }
         public decimal? viaticoPorHospedaje { set; get; }
-
-
-
     }
 }
