@@ -134,9 +134,9 @@ namespace Empresa_API_FINAL.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error al crear un nuevo estudiante: {ex.Message}");
+                _logger.LogError($"Error al crear un nuevo empleado: {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error interno del servidor al crear un nuevo estudiante.");
+                    "Error interno del servidor al crear un nuevo empleado.");
             }
         }
 
@@ -166,6 +166,7 @@ namespace Empresa_API_FINAL.Controllers
                     return NotFound("El empleado no existe.");
                 }
 
+                // actualizar solo las propiedades necesarias del empleado existente
                 _mapper.Map(updateDto, existeEmpleado);
 
                 await _empleadorepository.SaveChangesAsync();
@@ -179,7 +180,7 @@ namespace Empresa_API_FINAL.Controllers
                 if (!await _empleadorepository.ExistsAsync(s => s.EmpleadoId == id))
                 {
                     _logger.LogWarning($"No se encontró ningún empleado con este ID: {id}");
-                    return NotFound("El empelado no se encontró durante la actualización");
+                    return NotFound("El empleado no se encontró durante la actualización");
                 }
                 else
                 {
@@ -230,7 +231,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPatch("{id}")]
-        [ActividadRegistradaAsync("ALLeEmpleados")]
+        [ActividadRegistradaAsync("AllEmpleados")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]

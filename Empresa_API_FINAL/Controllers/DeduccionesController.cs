@@ -107,6 +107,7 @@ namespace Empresa_API_FINAL.Controllers
             {
                 _logger.LogInformation($"Creando una nueva deduccion");
 
+                // Verificar si el estudiante ya existe
                 var ExistenciaDeDuduccion = await _deduccionesRepository
                     .GetAsync(s => s.empleadoId == createDto.empleadoId);
 
@@ -123,6 +124,8 @@ namespace Empresa_API_FINAL.Controllers
                     _logger.LogError("El modelo de la deduccion no es válida.");
                     return BadRequest(ModelState);
                 }
+
+                // Crear el nuevo estudiante
                 var nuevaDeducion = _mapper.Map<Deducciones>(createDto);
 
                 await _deduccionesRepository.CreateAsync(nuevaDeducion);
@@ -135,7 +138,7 @@ namespace Empresa_API_FINAL.Controllers
             {
                 _logger.LogError($"Error al crear una nueva deduccion: {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error interno del servidor al crear un nuevo estudiante.");
+                    "Error interno del servidor al crear un nuevo empleado.");
             }
         }
 
@@ -164,6 +167,8 @@ namespace Empresa_API_FINAL.Controllers
                     _logger.LogInformation($"No se encontró ninguna deduccion para el empleado: {updateDto.nombreDeEmpleado}");
                     return NotFound("la deduccion no existe.");
                 }
+
+                // Actualizar solo las propiedades necesarias del estudiante existente
                 _mapper.Map(updateDto, existenciaDeDeduccion);
 
                 await _deduccionesRepository.SaveChangesAsync();
@@ -184,14 +189,14 @@ namespace Empresa_API_FINAL.Controllers
                     _logger.LogError($"Error de concurrencia al actualizar la deduccion" +
                         $"con ID: {id}. Detalles: {ex.Message}");
                     return StatusCode(StatusCodes.Status500InternalServerError,
-                        "Error interno del servidor al actualizar el estudiante.");
+                        "Error interno del servidor al actualizar el empleado.");
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error al actualizar la deduccion {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error interno del servidor al actualizar la deduccion.");
+                    "Error interno del servidor al actualizar el estudiante.");
             }
         }
 
@@ -223,7 +228,7 @@ namespace Empresa_API_FINAL.Controllers
             {
                 _logger.LogError($"Error al eliminar la deduccion con ID {id}: {ex.Message}");
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Se produjo un error al eliminar el estudiante.");
+                    "Se produjo un error al eliminar el empleado.");
             }
         }
 
@@ -259,8 +264,7 @@ namespace Empresa_API_FINAL.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    _logger.LogError("El modelo de la deduccion después de aplicar el parche" +
-                        " no es válido.");
+                    _logger.LogError("El modelo de la deduccion después de aplicar el parche no es válido.");
                     return BadRequest(ModelState);
                 }
 
@@ -288,7 +292,7 @@ namespace Empresa_API_FINAL.Controllers
                             _logger.LogError($"Error de concurrencia al aplicar el parche a la deduccion  " +
                                 $"con ID: {id}. Detalles: {ex.Message}");
                             return StatusCode(StatusCodes.Status500InternalServerError,
-                                "Error interno del servidor al aplicar el parche al estudiante.");
+                                "Error interno del servidor al aplicar el parche al empleado.");
                         }
                     }
                     catch (Exception ex)
