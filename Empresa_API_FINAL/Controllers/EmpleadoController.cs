@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedModels;
-using SharedModels.Dto;
+using SharedModels.Dto.EmpleadoDto;
 
 namespace Empresa_API_FINAL.Controllers
 {
@@ -106,7 +106,6 @@ namespace Empresa_API_FINAL.Controllers
             {
                 _logger.LogInformation($"Creando un nuevo empleado con nombre: {createDto.primerNombre}");
 
-                // Verificar si el estudiante ya existe
                 var existeEmpleado = await _empleadorepository
                     .GetAsync(s => s.primerNombre == createDto.primerNombre);
 
@@ -117,21 +116,21 @@ namespace Empresa_API_FINAL.Controllers
                     return BadRequest(ModelState);
                 }
 
-                // Verificar la validez del modelo
+                
                 if (!ModelState.IsValid)
                 {
                     _logger.LogError("El modelo de empleado no es válido.");
                     return BadRequest(ModelState);
                 }
 
-                // Crear el nuevo estudiante
+
                 var nuevoEmpleado = _mapper.Map<Empleado>(createDto);
 
                 await _empleadorepository.CreateAsync(nuevoEmpleado);
 
                 _logger.LogInformation($"Nuevo empleado '{createDto.primerNombre}' creado con ID: " +
-                    $"{nuevoEmpleado.Id}");
-                return CreatedAtAction(nameof(GetEmpleado), new { id = nuevoEmpleado.Id }, nuevoEmpleado);
+                    $"{nuevoEmpleado.EmpleadoId}");
+                return CreatedAtAction(nameof(GetEmpleado), new { id = nuevoEmpleado.EmpleadoId }, nuevoEmpleado);
             }
             catch (Exception ex)
             {
@@ -150,7 +149,7 @@ namespace Empresa_API_FINAL.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PutEmpleado(int id, EmpleadoUpdateDto updateDto)
         {
-            if (updateDto == null || id != updateDto.empleadoId)
+            if (updateDto == null || id != updateDto.EmpleadoId)
             {
                 return BadRequest("Los datos de entrada no son válidos o " +
                     "el ID del empleado no coincide.");
@@ -167,7 +166,6 @@ namespace Empresa_API_FINAL.Controllers
                     return NotFound("El empleado no existe.");
                 }
 
-                // Actualizar solo las propiedades necesarias del estudiante existente
                 _mapper.Map(updateDto, existeEmpleado);
 
                 await _empleadorepository.SaveChangesAsync();
@@ -178,7 +176,7 @@ namespace Empresa_API_FINAL.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (!await _empleadorepository.ExistsAsync(s => s.Id == id))
+                if (!await _empleadorepository.ExistsAsync(s => s.EmpleadoId == id))
                 {
                     _logger.LogWarning($"No se encontró ningún empleado con este ID: {id}");
                     return NotFound("El empelado no se encontró durante la actualización");
@@ -220,7 +218,7 @@ namespace Empresa_API_FINAL.Controllers
 
                 await _empleadorepository.DeleteAsync(empleado);
 
-                _logger.LogInformation($"empleado con ID {id} eliminado correctamente.");
+                _logger.LogInformation($"empleado con el ID {id} eliminado correctamente.");
                 return NoContent();
             }
             catch (Exception ex)
@@ -248,7 +246,7 @@ namespace Empresa_API_FINAL.Controllers
 
             try
             {
-                _logger.LogInformation($"Aplicando el parche al empleado con ID: {id}");
+                _logger.LogInformation($"Aplicando el patche al empleado con ID: {id}");
 
                 var empleado = await _empleadorepository.GetById(id);
                 if (empleado == null)
@@ -282,7 +280,7 @@ namespace Empresa_API_FINAL.Controllers
                     }
                     catch (DbUpdateConcurrencyException ex)
                     {
-                        if (!await _empleadorepository.ExistsAsync(s => s.Id == id))
+                        if (!await _empleadorepository.ExistsAsync(s => s.EmpleadoId == id))
                         {
                             _logger.LogWarning($"No se encontró ningún empleando con ID: {id}");
                             return NotFound();

@@ -5,14 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels.Dto
+namespace SharedModels.Dto.IngresosDto
 {
     public class IngresosUpdateDto
     {
-        [Required]
+        [Key]
         public int IngresoId { get; set; }
         [Required]
         public int EmpleadoId { set; get; }
+        [Required]
+        [StringLength(50)]
+        public string? nombreDeEmpleado { set; get; }
+        [Required]
+        [StringLength(50)]
+        public string? ApellidoDeEmpleado { set; get; }
         public decimal SalarioBase { set; get; }
         public decimal? Comisiones { set; get; }
         public int HorasExtra { set; get; }

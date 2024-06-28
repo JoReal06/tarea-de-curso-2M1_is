@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
+using Empresa_API_FINAL.FIltros;
 using Empresa_API_FINAL.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SharedModels.Dto;
 using SharedModels;
+using SharedModels.Dto.IngresosDto;
+using SharedModels.Dto.NominaDto;
 
 namespace Empresa_API_FINAL.Controllers
 {
@@ -31,6 +33,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
+        [ActividadRegistradaAsync("ALlIngresos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<IngresosReadDto>>> GetIngresos()
@@ -52,6 +55,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
+        [ActividadRegistradaAsync("ALlIngresos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -87,6 +91,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
+        [ActividadRegistradaAsync("ALlIngresos")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -103,9 +108,8 @@ namespace Empresa_API_FINAL.Controllers
                 _logger.LogInformation($"Creando un nuevo ingreso para el empleado " +
                     $"de ID: {createDto.EmpleadoId}");
 
-                // Verificar si el estudiante existe
                 var empleadoExiste = await _empleadoRepository.ExistsAsync(
-                    s => s.Id == createDto.EmpleadoId);
+                    s => s.EmpleadoId == createDto.EmpleadoId);
 
                 if (!empleadoExiste)
                 {
@@ -116,7 +120,7 @@ namespace Empresa_API_FINAL.Controllers
 
 
                 var existeIngreso = await _ingresosRepository
-                    .GetAsync(a => a.Id == createDto.EmpleadoId);
+                    .GetAsync(a => a.IngresosId == createDto.IngresoId);
 
 
                 if (existeIngreso != null)
@@ -134,15 +138,14 @@ namespace Empresa_API_FINAL.Controllers
                     return BadRequest(ModelState);
                 }
 
-                // Crear la nueva asistencia
                 var nuevoIngreso = _mapper.Map<Ingresos>(createDto);
 
                 await _ingresosRepository.CreateAsync(nuevoIngreso);
 
                 _logger.LogInformation($"Nuevo ingreso creada con ID: " +
-                    $"{nuevoIngreso.Id}");
+                    $"{nuevoIngreso.IngresosId}");
                 return CreatedAtAction(nameof(GetIngreso),
-                    new { id = nuevoIngreso.Id }, nuevoIngreso);
+                    new { id = nuevoIngreso.IngresosId }, nuevoIngreso);
             }
             catch (Exception ex)
             {
@@ -153,6 +156,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
+        [ActividadRegistradaAsync("ALlIngresos")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -163,7 +167,7 @@ namespace Empresa_API_FINAL.Controllers
             if (updateDto == null || id != updateDto.IngresoId)
             {
                 return BadRequest("Los datos de entrada no son válidos o " +
-                    "el ID de la nomina no coincide.");
+                    "el ID del ingreso no coincide.");
             }
 
             try
@@ -176,10 +180,8 @@ namespace Empresa_API_FINAL.Controllers
                     _logger.LogInformation($"No se encontró ningun ingreso con ID: {id}");
                     return NotFound("el ingreso no existe.");
                 }
-
-                // Verificar si el estudiante existe
                 var empleadoExiste = await _empleadoRepository.ExistsAsync(
-                    s => s.Id == updateDto.EmpleadoId);
+                    s => s.EmpleadoId == updateDto.EmpleadoId);
 
                 if (!empleadoExiste)
                 {
@@ -188,7 +190,7 @@ namespace Empresa_API_FINAL.Controllers
                     return BadRequest(ModelState);
                 }
 
-                // Actualizar solo las propiedades necesarias del estudiante existente
+               
                 _mapper.Map(updateDto, existeIngreso);
 
                 await _ingresosRepository.SaveChangesAsync();
@@ -199,7 +201,7 @@ namespace Empresa_API_FINAL.Controllers
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (!await _ingresosRepository.ExistsAsync(a => a.Id == id))
+                if (!await _ingresosRepository.ExistsAsync(a => a.IngresosId == id))
                 {
                     _logger.LogWarning($"No se encontró ningun ingreso con ID: {id}");
                     return NotFound("el ingreso no se encontró durante la actualización");
@@ -221,20 +223,21 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ActividadRegistradaAsync("ALlIngresos")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteIngresos(int id)
+        public async Task<IActionResult> DeleteIngreso(int id)
         {
             try
             {
-                _logger.LogInformation($"Eliminando ingresos con ID: {id}");
+                _logger.LogInformation($"Eliminando ingreso con ID: {id}");
 
                 var Ingreso = await _ingresosRepository.GetById(id);
                 if (Ingreso == null)
                 {
                     _logger.LogInformation($"Eliminando ingreso con ID: {id}");
-                    return NotFound("ingreso no encontrada.");
+                    return NotFound("ingreso no encontrado.");
                 }
 
                 await _ingresosRepository.DeleteAsync(Ingreso);

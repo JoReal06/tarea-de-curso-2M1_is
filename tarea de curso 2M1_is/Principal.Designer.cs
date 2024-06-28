@@ -60,8 +60,9 @@
             panelIzquierdo.Controls.Add(pictureBox1);
             panelIzquierdo.Dock = DockStyle.Left;
             panelIzquierdo.Location = new Point(0, 0);
+            panelIzquierdo.Margin = new Padding(3, 2, 3, 2);
             panelIzquierdo.Name = "panelIzquierdo";
-            panelIzquierdo.Size = new Size(250, 650);
+            panelIzquierdo.Size = new Size(219, 488);
             panelIzquierdo.TabIndex = 0;
             // 
             // btnNominas
@@ -72,9 +73,10 @@
             btnNominas.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNominas.ForeColor = Color.Thistle;
             btnNominas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnNominas.Location = new Point(12, 355);
+            btnNominas.Location = new Point(10, 266);
+            btnNominas.Margin = new Padding(3, 2, 3, 2);
             btnNominas.Name = "btnNominas";
-            btnNominas.Size = new Size(220, 45);
+            btnNominas.Size = new Size(192, 34);
             btnNominas.TabIndex = 4;
             btnNominas.Text = "Nominas";
             btnNominas.UseVisualStyleBackColor = true;
@@ -87,12 +89,14 @@
             btnOpcional.FlatStyle = FlatStyle.Flat;
             btnOpcional.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold);
             btnOpcional.ForeColor = Color.Thistle;
-            btnOpcional.Location = new Point(12, 459);
+            btnOpcional.Location = new Point(10, 344);
+            btnOpcional.Margin = new Padding(3, 2, 3, 2);
             btnOpcional.Name = "btnOpcional";
-            btnOpcional.Size = new Size(220, 45);
+            btnOpcional.Size = new Size(192, 34);
             btnOpcional.TabIndex = 3;
-            btnOpcional.Text = "button3";
+            btnOpcional.Text = "Ver Tablas";
             btnOpcional.UseVisualStyleBackColor = true;
+            btnOpcional.Click += btnOpcional_Click;
             // 
             // btnRegistro
             // 
@@ -102,9 +106,10 @@
             btnRegistro.Font = new Font("Yu Gothic UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegistro.ForeColor = Color.Thistle;
             btnRegistro.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRegistro.Location = new Point(12, 259);
+            btnRegistro.Location = new Point(10, 194);
+            btnRegistro.Margin = new Padding(3, 2, 3, 2);
             btnRegistro.Name = "btnRegistro";
-            btnRegistro.Size = new Size(220, 45);
+            btnRegistro.Size = new Size(192, 34);
             btnRegistro.TabIndex = 1;
             btnRegistro.Text = "Registro";
             btnRegistro.UseVisualStyleBackColor = true;
@@ -113,9 +118,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.freepik_gradient_developers_coding_logo_20240622195010Qks8;
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(10, 9);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(220, 135);
+            pictureBox1.Size = new Size(192, 101);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -129,9 +135,10 @@
             panelTitulo.Controls.Add(btnPestaña);
             panelTitulo.Controls.Add(btnIzquierdo);
             panelTitulo.Dock = DockStyle.Top;
-            panelTitulo.Location = new Point(250, 0);
+            panelTitulo.Location = new Point(219, 0);
+            panelTitulo.Margin = new Padding(3, 2, 3, 2);
             panelTitulo.Name = "panelTitulo";
-            panelTitulo.Size = new Size(1000, 65);
+            panelTitulo.Size = new Size(875, 49);
             panelTitulo.TabIndex = 1;
             panelTitulo.MouseDown += panelTitulo_MouseDown;
             // 
@@ -140,9 +147,10 @@
             btnRestaurar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnRestaurar.Cursor = Cursors.Hand;
             btnRestaurar.Image = (Image)resources.GetObject("btnRestaurar.Image");
-            btnRestaurar.Location = new Point(885, 12);
+            btnRestaurar.Location = new Point(774, 9);
+            btnRestaurar.Margin = new Padding(3, 2, 3, 2);
             btnRestaurar.Name = "btnRestaurar";
-            btnRestaurar.Size = new Size(50, 40);
+            btnRestaurar.Size = new Size(44, 30);
             btnRestaurar.SizeMode = PictureBoxSizeMode.StretchImage;
             btnRestaurar.TabIndex = 1;
             btnRestaurar.TabStop = false;
@@ -154,9 +162,10 @@
             btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnExit.Cursor = Cursors.Hand;
             btnExit.Image = Properties.Resources.Exit;
-            btnExit.Location = new Point(941, 12);
+            btnExit.Location = new Point(823, 9);
+            btnExit.Margin = new Padding(3, 2, 3, 2);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(50, 40);
+            btnExit.Size = new Size(44, 30);
             btnExit.SizeMode = PictureBoxSizeMode.StretchImage;
             btnExit.TabIndex = 0;
             btnExit.TabStop = false;
@@ -167,9 +176,10 @@
             btnMaximizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMaximizar.Cursor = Cursors.Hand;
             btnMaximizar.Image = Properties.Resources.Maximizar;
-            btnMaximizar.Location = new Point(885, 12);
+            btnMaximizar.Location = new Point(774, 9);
+            btnMaximizar.Margin = new Padding(3, 2, 3, 2);
             btnMaximizar.Name = "btnMaximizar";
-            btnMaximizar.Size = new Size(50, 40);
+            btnMaximizar.Size = new Size(44, 30);
             btnMaximizar.SizeMode = PictureBoxSizeMode.StretchImage;
             btnMaximizar.TabIndex = 3;
             btnMaximizar.TabStop = false;
@@ -180,9 +190,10 @@
             btnPestaña.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnPestaña.Cursor = Cursors.Hand;
             btnPestaña.Image = Properties.Resources.Dejar;
-            btnPestaña.Location = new Point(829, 12);
+            btnPestaña.Location = new Point(725, 9);
+            btnPestaña.Margin = new Padding(3, 2, 3, 2);
             btnPestaña.Name = "btnPestaña";
-            btnPestaña.Size = new Size(50, 40);
+            btnPestaña.Size = new Size(44, 30);
             btnPestaña.SizeMode = PictureBoxSizeMode.StretchImage;
             btnPestaña.TabIndex = 2;
             btnPestaña.TabStop = false;
@@ -192,9 +203,10 @@
             // 
             btnIzquierdo.Cursor = Cursors.Hand;
             btnIzquierdo.Image = Properties.Resources.Opciones;
-            btnIzquierdo.Location = new Point(15, 12);
+            btnIzquierdo.Location = new Point(13, 9);
+            btnIzquierdo.Margin = new Padding(3, 2, 3, 2);
             btnIzquierdo.Name = "btnIzquierdo";
-            btnIzquierdo.Size = new Size(47, 40);
+            btnIzquierdo.Size = new Size(41, 30);
             btnIzquierdo.SizeMode = PictureBoxSizeMode.StretchImage;
             btnIzquierdo.TabIndex = 0;
             btnIzquierdo.TabStop = false;
@@ -203,20 +215,22 @@
             // panelContenedor
             // 
             panelContenedor.Dock = DockStyle.Fill;
-            panelContenedor.Location = new Point(250, 65);
+            panelContenedor.Location = new Point(219, 49);
+            panelContenedor.Margin = new Padding(3, 2, 3, 2);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1000, 585);
+            panelContenedor.Size = new Size(875, 439);
             panelContenedor.TabIndex = 2;
             // 
             // Principal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1250, 650);
+            ClientSize = new Size(1094, 488);
             Controls.Add(panelContenedor);
             Controls.Add(panelTitulo);
             Controls.Add(panelIzquierdo);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Principal";
             Text = "Principal";
             panelIzquierdo.ResumeLayout(false);

@@ -5,17 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels.Dto
+namespace SharedModels.Dto.DeduccionesDto
 {
-    public class DeduccionesUpdateDto
+    public class DeduccionesCreateDto
     {
-        [Required]
-        public int DeduccionId { set; get; }
-        [Required]
-        public int EmpleadoId { set; get; }
-        public string nombreEmpleado { set; get; }
-        public decimal Inns { set; get; }
-        public decimal Ir { set; get; }
+  
+        public int empleadoId { set; get; }
+        public string nombreDeEmpleado { set; get; }
+        public string ApellidoDeEmpleado { set; get; }
         public decimal? PrestamoBancario { set; get; }
         public decimal? PrestamoEmpresario { set; get; }
         public decimal? PensionAlimenticia { set; get; }

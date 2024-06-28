@@ -333,7 +333,7 @@
             lblHora.Size = new Size(97, 28);
             lblHora.TabIndex = 21;
             lblHora.Text = "label15";
-            lblHora.Click += lblHora_Click;
+     
             // 
             // txtDireccion
             // 
@@ -345,7 +345,7 @@
             txtDireccion.Name = "txtDireccion";
             txtDireccion.Size = new Size(487, 45);
             txtDireccion.TabIndex = 20;
-            txtDireccion.TextChanged += textBox2_TextChanged;
+           
             txtDireccion.KeyPress += txtDireccion_KeyPress;
             txtDireccion.Leave += txtDireccion_Leave;
             // 
@@ -537,7 +537,7 @@
             txtPrimerNombre.Name = "txtPrimerNombre";
             txtPrimerNombre.Size = new Size(163, 27);
             txtPrimerNombre.TabIndex = 1;
-            txtPrimerNombre.TextChanged += textBox1_TextChanged;
+          
             txtPrimerNombre.KeyPress += txtPrimerNombre_KeyPress;
             // 
             // label1
@@ -549,7 +549,7 @@
             label1.Size = new Size(114, 20);
             label1.TabIndex = 0;
             label1.Text = "Primer Nombre:";
-            label1.Click += label1_Click;
+            
             // 
             // horaFecha
             // 

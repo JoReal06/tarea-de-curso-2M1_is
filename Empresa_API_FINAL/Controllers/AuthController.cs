@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SharedModels;
-using SharedModels.Dto;
+using SharedModels.Dto.UserDto;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -52,15 +52,15 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginUserDto model)
+        public async Task<IActionResult> Login([FromBody] LoginUsuarioDto model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var usuario = await _userRepo.GetUserByUserNameAsync(model.nombreUsurio);
+            var usuario = await _userRepo.GetUserByUserNameAsync(model.nombreDeUsuario);
 
-            if (usuario == null || !await _userRepo.ValidateUserAsync(model.nombreUsurio, model.Contraseña))
+            if (usuario == null || !await _userRepo.ValidateUserAsync(model.nombreDeUsuario, model.contraseña))
                 return Unauthorized("DATOS NO VALIDOS");
 
             var token = GenerateJwtToken(usuario);

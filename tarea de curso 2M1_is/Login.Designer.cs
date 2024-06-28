@@ -89,7 +89,7 @@
             btn_incio.TabIndex = 5;
             btn_incio.Text = "Enviar";
             btn_incio.UseVisualStyleBackColor = true;
-            btn_incio.Click += btn_incio_Click;
+            
             // 
             // lb_aviso
             // 

@@ -52,10 +52,12 @@
             // 
             cmb_tablas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_tablas.FormattingEnabled = true;
+            cmb_tablas.Items.AddRange(new object[] { "tabla de empleados", "tabla de Ingresos", "tabla de Deducciones", "tabla de nominas" });
             cmb_tablas.Location = new Point(119, 31);
             cmb_tablas.Name = "cmb_tablas";
             cmb_tablas.Size = new Size(157, 23);
             cmb_tablas.TabIndex = 1;
+            cmb_tablas.SelectedIndexChanged += cmb_tablas_SelectedIndexChanged;
             // 
             // dataGridView1
             // 

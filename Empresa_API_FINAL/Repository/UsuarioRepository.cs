@@ -24,7 +24,7 @@ namespace Empresa_API_FINAL.Repository
 
         public Task<Usuario> GetUserByUserNameAsync(string userName)
         {
-            return _context.usuarios.SingleOrDefaultAsync(u => u.Nombre == userName);
+            return  _context.usuarios.SingleOrDefaultAsync(u => u.nombreDeUsuario == userName);
         }
 
         public async Task RegisterUserAsync(Usuario user, string password)

@@ -98,7 +98,7 @@ namespace tarea_de_curso_2M1_is
 
         private void Principal_Resize(object sender, EventArgs e)
         {
-            // Ajustar la visibilidad de los botones de restaurar y maximizar según el estado del formulario
+            
             if (this.WindowState == FormWindowState.Maximized)
             {
                 btnRestaurar.Visible = true;
@@ -114,6 +114,11 @@ namespace tarea_de_curso_2M1_is
         private void button1_Click(object sender, EventArgs e)
         {
             AbrirFormInPanel(new Nominas(this));
+        }
+
+        private void btnOpcional_Click(object sender, EventArgs e)
+        {
+            AbrirFormInPanel(new CRUDForm());
         }
     }
 }

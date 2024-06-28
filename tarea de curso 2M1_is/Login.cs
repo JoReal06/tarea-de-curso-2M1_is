@@ -12,10 +12,13 @@ namespace tarea_de_curso_2M1_is
 {
     public partial class Login : Form
     {
+        //private readonly ApiClient apiClient;
+
         public Login()
         {
             InitializeComponent();
             lb_aviso.Visible = false;
+            //apiClient = new ApiClient();
         }
 
         private void txt_nombre_KeyDown(object sender, KeyEventArgs e)
@@ -27,16 +30,35 @@ namespace tarea_de_curso_2M1_is
         private void txt_contraseña_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                btn_incio_Click(sender, e);
+                btn_incio_ClickAsync(sender, e);
 
         }
 
-        private void btn_incio_Click(object sender, EventArgs e)
+        private async Task btn_incio_ClickAsync(object sender, EventArgs e)
         {
-           
-            Principal principal = new Principal();
-            this.Hide();
-            principal.Show();
+
+            //string username = txt_nombre.Text;
+            //string password = txt_contraseña.Text;
+
+            //var token =
+            //    await apiClient.LoginUsers.AuthenticateUserAsync(username, password);
+
+            //if (!string.IsNullOrEmpty(token))
+            //{
+            //    MessageBox.Show("Login correcto!");
+
+            //    // Guardar el token para futuras solicitudes
+            //    apiClient.SetAuthToken(token);
+
+            //    Hide();
+            //    var mainForm = new Principal();
+            //    mainForm.Show();
+            //}
+            //else
+            //{
+            //    lb_aviso.Visible = true;
+            //}
+
         }
     }
 }

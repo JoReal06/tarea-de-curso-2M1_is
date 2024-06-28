@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using Empresa_API_FINAL.FIltros;
 using Empresa_API_FINAL.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedModels;
-using SharedModels.Dto;
+using SharedModels.Dto.NominaDto;
 
 namespace Empresa_API_FINAL.Controllers
 {
@@ -32,6 +33,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
+        [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<NominaReadDto>>> GetNominas()
@@ -53,6 +55,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
+        [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -88,6 +91,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
+        [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -106,7 +110,7 @@ namespace Empresa_API_FINAL.Controllers
 
                 // Verificar si el estudiante existe
                 var empleadoExiste = await _empleadoRepository.ExistsAsync(
-                    s => s.Id == createDto.EmpleadoId);
+                    s => s.EmpleadoId == createDto.EmpleadoId);
 
                 if (!empleadoExiste)
                 {
@@ -115,7 +119,7 @@ namespace Empresa_API_FINAL.Controllers
                     return BadRequest(ModelState);
                 }
 
-                
+
                 var existeNomina = await _nominarepositosy
                     .GetAsync(a => a.Id == createDto.EmpleadoId);
 
@@ -154,6 +158,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
+        [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -177,10 +182,8 @@ namespace Empresa_API_FINAL.Controllers
                     _logger.LogInformation($"No se encontró ninguna nomina con ID: {id}");
                     return NotFound("La nomina no existe.");
                 }
-
-                // Verificar si el estudiante existe
                 var empleadoExiste = await _empleadoRepository.ExistsAsync(
-                    s => s.Id == updateDto.EmpleadoId);
+                    s => s.EmpleadoId == updateDto.EmpleadoId);
 
                 if (!empleadoExiste)
                 {
@@ -188,8 +191,6 @@ namespace Empresa_API_FINAL.Controllers
                     ModelState.AddModelError("la nomina no existe", "¡la nomina no existe!");
                     return BadRequest(ModelState);
                 }
-
-                // Actualizar solo las propiedades necesarias del estudiante existente
                 _mapper.Map(updateDto, existenomina);
 
                 await _nominarepositosy.SaveChangesAsync();
@@ -222,6 +223,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
+        [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -250,6 +252,6 @@ namespace Empresa_API_FINAL.Controllers
                     "Se produjo un error al eliminar la nomina.");
             }
         }
-        
+
     }
 }

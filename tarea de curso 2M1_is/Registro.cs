@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SharedModels;
+using SharedModels.Dto;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace tarea_de_curso_2M1_is
 {
@@ -260,45 +263,67 @@ namespace tarea_de_curso_2M1_is
         // evento del botón guardar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (ValidarCampos())
-            {
-                MessageBox.Show("Datos guardados correctamente.");
-                LimpiarCampos();
-            }
-            else
-            {
-                MessageBox.Show("Por favor complete correctamente todos los campos.");
-            }
+            //    if (ValidarCampos())
+            //    {
+            //        try
+            //        {
+
+
+
+            //            var newEmployee = new EmpleadoCreateDto
+            //            {
+            //                primerNombre = txtPrimerNombre.Text,
+            //                segundoNombre = txtSegundoNombre.Text,
+            //                primerApellido = txtPrimerApellido.Text,
+            //                segundoApellido = txtSegundoApellido.Text,
+            //                sexo = (rbtnFemenino.Checked) ? "Femenino" : "masculino",
+            //                estadoCivil = (comboBoxSolteroCasado.SelectedIndex == 0) ? "soltero" : (comboBoxSolteroCasado.SelectedIndex == 1) ? "casado" : (comboBoxSolteroCasado.SelectedIndex == 2) ? "Viudo" : (comboBoxSolteroCasado.SelectedIndex == 3) ? "Es complicado" : "no se ha seleccionado nada",
+            //                direccion = txtDireccion.Text,
+            //                telefono = int.Parse(txtTelefono.Text),
+            //                celular = int.Parse(txtNumeroCelular.Text),
+            //                fechaDeNacimiento = DateOnly.FromDateTime(dateTimePickerFnacimiento.Value),
+            //                fechaDeContratacion = DateOnly.FromDateTime(dateTimePickerFContratacion.Value),
+            //                fechaDeCierreDeContrato = DateOnly.FromDateTime(dateTimePickerFCierreContra.Value),
+            //                numCedula = txtNumeroDeCedula.Text,
+            //                numInss = txtNumeroDeInss.Text,
+            //                NumeroRUC = txtNRUC.Text,
+            //                SalarioRegular = regularSalary,
+            //                EstaActivo = isActive,
+            //            };
+
+            //            var createdEmployee = await _apiClient.Employees.CreateAsync(newEmployee);
+            //            if (createdEmployee != null) // Verifica si se creó correctamente el empleado
+            //            {
+            //                MessageBox.Show("¡Empleado agregado exitosamente!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //                ClearInputFields();
+            //            }
+            //            else
+            //            {
+            //                MessageBox.Show("Error al agregar al Empleado. La operación no fue exitosa.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+
+            //            else
+            //        {
+            //            MessageBox.Show("El salario ingresado no es un valor decimal válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //        MessageBox.Show($"Error al agregar al Empleado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+
+            //    MessageBox.Show("Datos guardados correctamente.");
+            //    LimpiarCampos();
+            //}
+            //    else
+            //    {
+            //    }
+            //}
+
+
         }
 
-        //------------
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void lblHora_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
-    }
+    }  
+  
 }

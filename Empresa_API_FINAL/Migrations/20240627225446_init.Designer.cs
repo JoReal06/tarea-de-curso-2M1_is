@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Empresa_API_FINAL.Migrations
 {
     [DbContext(typeof(EmpresaContext))]
-    [Migration("20240627100949_init")]
+    [Migration("20240627225446_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,60 +27,58 @@ namespace Empresa_API_FINAL.Migrations
 
             modelBuilder.Entity("SharedModels.Deducciones", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("deduccionesId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("deduccionesId"));
 
-                    b.Property<decimal>("DeduccionPorDaños")
+                    b.Property<string>("ApellidoDeEmpleado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("DeduccionPorDaños")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Inns")
+                    b.Property<decimal?>("PensionAlimenticia")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Ir")
+                    b.Property<decimal?>("PrestamoBancario")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("PensionAlimenticia")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrestamoBancario")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("PrestamoEmpresario")
+                    b.Property<decimal?>("PrestamoEmpresario")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("empleadoId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<string>("nombreDeEmpleado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("empleadoId");
+                    b.HasKey("deduccionesId");
 
                     b.ToTable("deducciones");
                 });
 
             modelBuilder.Entity("SharedModels.Empleado", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EmpleadoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpleadoId"));
 
                     b.Property<int?>("celular")
                         .HasColumnType("int");
 
                     b.Property<string>("direccion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("estado")
                         .HasColumnType("bit");
 
                     b.Property<string>("estadoCivil")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly>("fechaDeCierreDeContrato")
@@ -92,11 +90,7 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<DateOnly>("fechaDeNacimiento")
                         .HasColumnType("date");
 
-                    b.Property<string>("numCedula")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("numEmpleado")
+                    b.Property<int>("numCedula")
                         .HasColumnType("int");
 
                     b.Property<int>("numInss")
@@ -106,15 +100,12 @@ namespace Empresa_API_FINAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("primerApellido")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("primerNombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("segundoApellido")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("segundoNombre")
@@ -127,50 +118,56 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<int?>("telefono")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmpleadoId");
 
                     b.ToTable("empleados");
                 });
 
             modelBuilder.Entity("SharedModels.Ingresos", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("IngresosId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IngresosId"));
 
-                    b.Property<decimal>("Bonificaciones")
+                    b.Property<string>("ApellidoDeEmpleado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Bonificaciones")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("Comisiones")
+                    b.Property<decimal?>("Comisiones")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("DepreciacionVehiculo")
+                    b.Property<decimal?>("DepreciacionVehiculo")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("EmpleadoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HorasExtra")
+                    b.Property<int?>("HorasExtra")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("OtrosIngresos")
+                    b.Property<decimal?>("OtrosIngresos")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("RiesgoLaboral")
+                    b.Property<decimal?>("RiesgoLaboral")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("SalarioBase")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("ViaticoAlimenticio")
+                    b.Property<decimal?>("ViaticoAlimenticio")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("ViaticoCombustible")
+                    b.Property<decimal?>("ViaticoCombustible")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("nombreDeEmpleado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IngresosId");
 
                     b.ToTable("ingresos");
                 });
@@ -186,55 +183,18 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<int>("EmpleadoId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("bonificaciones")
+                    b.Property<string>("NombreDeEmpleado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("apellidoDeEmpleado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("inns")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("comisiones")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("deduccionPorDaños")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("depreciacionVehiculo")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("horasExtras")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("inns")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ir")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("otrosIngresos")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("pensionAlimenticia")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("prestamoBancario")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("prestamoEmpresario")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("riesgoLaboral")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("salarioBase")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("viaticoAlimenticio")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("viaticoAlimenticioFijo")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("viaticoCobustible")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("viaticoPorHospedaje")
+                    b.Property<decimal?>("ir")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -273,17 +233,6 @@ namespace Empresa_API_FINAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("usuarios");
-                });
-
-            modelBuilder.Entity("SharedModels.Deducciones", b =>
-                {
-                    b.HasOne("SharedModels.Empleado", "empleado")
-                        .WithMany()
-                        .HasForeignKey("empleadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("empleado");
                 });
 #pragma warning restore 612, 618
         }
