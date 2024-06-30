@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SharedModels;
+using SharedModels.Dto;
 using SharedModels.Dto.DeduccionesDto;
 using SharedModels.Dto.EmpleadoDto;
 using SharedModels.Dto.IngresosDto;
@@ -27,6 +28,7 @@ namespace Empresa_API_FINAL
             CreateMap<Nomina, NominaCreateDto>().ReverseMap();
             CreateMap<Nomina, NominaReadDto>().ReverseMap();
             CreateMap<Nomina, NominaUpdateDto>().ReverseMap();
+            CreateMap<ActividadRegistrada, ActividadRegistradaCreateDto>().ReverseMap();
 
             CreateMap<Usuario, RegistrosUsuariosDto>().ReverseMap();
         }

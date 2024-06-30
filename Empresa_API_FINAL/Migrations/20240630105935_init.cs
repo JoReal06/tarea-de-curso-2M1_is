@@ -12,6 +12,23 @@ namespace Empresa_API_FINAL.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "actividadRegistradas",
+                columns: table => new
+                {
+                    ActividadId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    diaDeActividad = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Accion = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    endpoint = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    entidad = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    usuario = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_actividadRegistradas", x => x.ActividadId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "deducciones",
                 columns: table => new
                 {
@@ -123,6 +140,9 @@ namespace Empresa_API_FINAL.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "actividadRegistradas");
+
             migrationBuilder.DropTable(
                 name: "deducciones");
 

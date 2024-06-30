@@ -14,6 +14,7 @@ namespace Empresa_API_FINAL.Controllers
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
+    [ActividadRegistradaFiltro]
     public class IngresosController : ControllerBase
     {
         private readonly IEmpleadoRepository _empleadoRepository;
@@ -33,7 +34,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        //[ActividadRegistradaAsync("AllIngresos")]
+        
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<IngresosReadDto>>> GetIngresos()
@@ -55,7 +56,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        //[ActividadRegistradaAsync("AllIngresos")]
+        
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +92,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        //[ActividadRegistradaAsync("AllIngresos")]
+       
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -156,7 +157,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        //[ActividadRegistradaAsync("AllIngresos")]
+        
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -223,7 +224,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[ActividadRegistradaAsync("AllIngresos")]
+        
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

@@ -55,7 +55,7 @@
             // 
             cmb_tablas.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_tablas.FormattingEnabled = true;
-            cmb_tablas.Items.AddRange(new object[] { "tabla de empleados", "tabla de Ingresos", "tabla de Deducciones", "tabla de nominas" });
+            cmb_tablas.Items.AddRange(new object[] { "tabla de empleados", "tabla de Ingresos", "tabla de Deducciones", "tabla de nominas", "tabla de Actividades de los usuarios." });
             cmb_tablas.Location = new Point(119, 31);
             cmb_tablas.Name = "cmb_tablas";
             cmb_tablas.Size = new Size(177, 23);

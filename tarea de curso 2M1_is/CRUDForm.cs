@@ -83,6 +83,16 @@ namespace tarea_de_curso_2M1_is
                 txt_cambio.Enabled = false;
                 btnModificar_Click(sender, e);
             }
+            else
+            {
+                dtgvTablas.DataSource = null;
+                dtgvTablas.DataSource = await _apiClient.actividades.GetAllAsync();
+                picture_load.Visible = false;
+                btnModificar.Enabled = false;
+                cmb_elemntos.Enabled = false;
+                btnBorrar.Enabled = false;
+                txt_cambio.Enabled = false;
+            }
         }
 
         private int GetIdSeleccionado(DataGridView data)

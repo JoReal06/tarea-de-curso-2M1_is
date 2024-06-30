@@ -12,6 +12,7 @@ using System.Text;
 using Empresa_API_FINAL.Seguridad;
 using Empresa_API_FINAL;
 using Empresa_API_FINAL.FIltros;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,13 +22,15 @@ builder.Services.AddDbContext<EmpresaContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(Mapeo));
 
-builder.Services.AddControllers().AddNewtonsoftJson();
 
 builder.Services.AddScoped<IEmpleadoRepository, EmpleadoRepository>();
 builder.Services.AddScoped<IIngresosRepository, IngresosRepository>();
 builder.Services.AddScoped<INominaRepository, NominaRepository>();
 builder.Services.AddScoped<IDeduccionesRepository, DeduccionesRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IActividadRegistradaRepository, ActividadRegistradaRepository>();
+
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 builder.Services.AddScoped<IPasswordHasher<Usuario>, PasswordHasher<Usuario>>();
 

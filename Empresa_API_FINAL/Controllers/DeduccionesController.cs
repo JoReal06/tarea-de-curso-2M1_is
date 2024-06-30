@@ -11,6 +11,7 @@ using SharedModels.Dto.DeduccionesDto;
 
 namespace Empresa_API_FINAL.Controllers
 {
+    [ActividadRegistradaFiltro]
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
@@ -29,7 +30,6 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        //[ActividadRegistradaAsync("AllDeducciones")]
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -54,7 +54,6 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        //[ActividadRegistradaAsync("AllDeducciones")]
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -90,7 +89,6 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        //[ActividadRegistradaAsync("AllDeducciones")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -139,7 +137,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        //[ActividadRegistradaAsync("AllDeducciones")]
+       
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -196,7 +194,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-       // [ActividadRegistradaAsync("AllDeducciones")]
+  
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

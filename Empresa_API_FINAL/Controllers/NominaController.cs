@@ -13,6 +13,7 @@ namespace Empresa_API_FINAL.Controllers
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
+    [ActividadRegistradaFiltro]
     public class NominaController : ControllerBase
     {
 
@@ -33,7 +34,6 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<NominaReadDto>>> GetNominas()
@@ -55,7 +55,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-       // [ActividadRegistradaAsync("ALLNominas")]
+      
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +91,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        //[ActividadRegistradaAsync("ALLNominas")]
+        
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -158,7 +158,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        //[ActividadRegistradaAsync("ALLNominas")]
+       
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -223,7 +223,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[ActividadRegistradaAsync("ALLNominas")]
+       
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

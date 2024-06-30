@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels
+namespace SharedModels.Dto
 {
-    public class ActividadRegistrada
+    public class ActividadRegistradaCreateDto
     {
-        [Key]
-        public int ActividadId { set; get; }
+
         public DateTime diaDeActividad { get; set; }
         public string Accion { get; set; }
         public string endpoint { get; set; }

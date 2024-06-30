@@ -14,6 +14,7 @@ namespace Empresa_API_FINAL.Controllers
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/[controller]")]
     [ApiController]
+    [ActividadRegistradaFiltro]
     public class EmpleadoController : ControllerBase
     {
         private readonly IEmpleadoRepository _empleadorepository;
@@ -29,7 +30,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        //[ActividadRegistradaAsync("AllEmpleado")]
+       
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -52,7 +53,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        //[ActividadRegistradaAsync("AllEmpleado")]
+      
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -89,7 +90,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        //[ActividadRegistradaAsync("AllEmpleado")]
+     
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -141,7 +142,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        //[ActividadRegistradaAsync("AllEmpleado")]
+       
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -198,7 +199,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        //[ActividadRegistradaAsync("AllEmpleado")]
+      
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

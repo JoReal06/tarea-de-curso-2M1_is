@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Empresa_API_FINAL.Migrations
 {
     [DbContext(typeof(EmpresaContext))]
-    [Migration("20240629200145_init")]
+    [Migration("20240630105935_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -24,6 +24,38 @@ namespace Empresa_API_FINAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("SharedModels.ActividadRegistrada", b =>
+                {
+                    b.Property<int>("ActividadId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActividadId"));
+
+                    b.Property<string>("Accion")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("diaDeActividad")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("endpoint")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("entidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("usuario")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ActividadId");
+
+                    b.ToTable("actividadRegistradas");
+                });
 
             modelBuilder.Entity("SharedModels.Deducciones", b =>
                 {

@@ -1,4 +1,5 @@
-﻿using SharedModels.Dto.DeduccionesDto;
+﻿using SharedModels;
+using SharedModels.Dto.DeduccionesDto;
 using SharedModels.Dto.EmpleadoDto;
 using SharedModels.Dto.IngresosDto;
 using SharedModels.Dto.NominaDto;
@@ -19,6 +20,7 @@ namespace tarea_de_curso_2M1_is
         public IRepository<DeduccionesReadDto> deducciones { get; }
         public IRepository<IngresosReadDto> ingresos { get; }
         public IRepository<NominaReadDto> nominas { get; }
+        public IRepository<ActividadRegistrada> actividades { set; get; }
 
         public IUserRepository LoginUsers { get; }
         public ApiClient()
@@ -29,6 +31,7 @@ namespace tarea_de_curso_2M1_is
                 deducciones = new Repository<DeduccionesReadDto>(_httpClient, "Deducciones");
                 ingresos = new Repository<IngresosReadDto>(_httpClient, "Ingresos");
                 nominas = new Repository<NominaReadDto>(_httpClient, "Nomina");
+            actividades = new Repository<ActividadRegistrada>(_httpClient, "ActividadRegistrada");
                 LoginUsers = new UserRepository(_httpClient, "Auth/Login");
         }
 
