@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Empresa_API_FINAL.Migrations
 {
     [DbContext(typeof(EmpresaContext))]
-    [Migration("20240627225446_init")]
+    [Migration("20240629200145_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -49,6 +49,9 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<decimal?>("PrestamoEmpresario")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<decimal?>("despreciacionVehiculo")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("empleadoId")
                         .HasColumnType("int");
 
@@ -69,8 +72,8 @@ namespace Empresa_API_FINAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmpleadoId"));
 
-                    b.Property<int?>("celular")
-                        .HasColumnType("int");
+                    b.Property<long?>("celular")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("direccion")
                         .HasColumnType("nvarchar(max)");
@@ -90,14 +93,15 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<DateOnly>("fechaDeNacimiento")
                         .HasColumnType("date");
 
-                    b.Property<int>("numCedula")
-                        .HasColumnType("int");
+                    b.Property<string>("numCedula")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("numInss")
-                        .HasColumnType("int");
+                    b.Property<long>("numInss")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("numRuc")
-                        .HasColumnType("int");
+                    b.Property<long>("numRuc")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("primerApellido")
                         .HasColumnType("nvarchar(max)");
@@ -115,8 +119,8 @@ namespace Empresa_API_FINAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("telefono")
-                        .HasColumnType("int");
+                    b.Property<long?>("telefono")
+                        .HasColumnType("bigint");
 
                     b.HasKey("EmpleadoId");
 
@@ -155,13 +159,16 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<decimal?>("RiesgoLaboral")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("SalarioBase")
+                    b.Property<decimal?>("SalarioBase")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("ViaticoAlimenticio")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal?>("ViaticoCombustible")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ViaticoPorHospedaje")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("nombreDeEmpleado")
@@ -186,6 +193,9 @@ namespace Empresa_API_FINAL.Migrations
                     b.Property<string>("NombreDeEmpleado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("SalarioFinal")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("apellidoDeEmpleado")
                         .IsRequired()

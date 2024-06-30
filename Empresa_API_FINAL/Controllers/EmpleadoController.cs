@@ -29,12 +29,12 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        [ActividadRegistradaAsync("AllEmpleado")]
+        //[ActividadRegistradaAsync("AllEmpleado")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<EmpleadoReadDto>>> GetEmpleados()
-        {
+         {
             try
             {
                 _logger.LogInformation("Obteniendo los empelados");
@@ -52,7 +52,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        [ActividadRegistradaAsync("AllEmpleado")]
+        //[ActividadRegistradaAsync("AllEmpleado")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -89,7 +89,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        [ActividadRegistradaAsync("AllEmpleado")]
+        //[ActividadRegistradaAsync("AllEmpleado")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -141,7 +141,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        [ActividadRegistradaAsync("AllEmpleado")]
+        //[ActividadRegistradaAsync("AllEmpleado")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -166,7 +166,6 @@ namespace Empresa_API_FINAL.Controllers
                     return NotFound("El empleado no existe.");
                 }
 
-                // actualizar solo las propiedades necesarias del empleado existente
                 _mapper.Map(updateDto, existeEmpleado);
 
                 await _empleadorepository.SaveChangesAsync();
@@ -199,7 +198,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ActividadRegistradaAsync("AllEmpleado")]
+        //[ActividadRegistradaAsync("AllEmpleado")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -213,7 +212,7 @@ namespace Empresa_API_FINAL.Controllers
                 var empleado = await _empleadorepository.GetById(id);
                 if (empleado == null)
                 {
-                    _logger.LogInformation($"Eliminando empleado con ID: {id}");
+                    _logger.LogInformation($"El empleado con el ID: {id} no se encontro");
                     return NotFound("empleado no encontrado.");
                 }
 
@@ -230,88 +229,6 @@ namespace Empresa_API_FINAL.Controllers
             }
         }
 
-        [HttpPatch("{id}")]
-        [ActividadRegistradaAsync("AllEmpleados")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PatchEmpleado(int id,
-            JsonPatchDocument<EmpleadoUpdateDto> patchDto)
-        {
-            if (id <= 0)
-            {
-                return BadRequest("ID de empleado no válido.");
-            }
-
-            try
-            {
-                _logger.LogInformation($"Aplicando el patche al empleado con ID: {id}");
-
-                var empleado = await _empleadorepository.GetById(id);
-                if (empleado == null)
-                {
-                    _logger.LogWarning($"No se encontró ningún empleado con ID: {id}");
-                    return NotFound("El empleado no se encontró");
-                }
-
-                var empleadoDto = _mapper.Map<EmpleadoUpdateDto>(empleado);
-
-                patchDto.ApplyTo(empleadoDto, ModelState);
-
-                if (!ModelState.IsValid)
-                {
-                    _logger.LogError("El modelo del empleado después de aplicar el parche" +
-                        " no es válido.");
-                    return BadRequest(ModelState);
-                }
-
-                _mapper.Map(empleadoDto, empleado); // Aplicar cambios al objeto original
-
-                using (var transaction = await _empleadorepository.BeginTransactionAsync())
-                {
-                    try
-                    {
-                        await _empleadorepository.SaveChangesAsync();
-                        transaction.Commit();
-                        _logger.LogInformation($"Parche aplicado correctamente al empleado " +
-                            $"con ID: {id}");
-                        return NoContent();
-                    }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        if (!await _empleadorepository.ExistsAsync(s => s.EmpleadoId == id))
-                        {
-                            _logger.LogWarning($"No se encontró ningún empleando con ID: {id}");
-                            return NotFound();
-                        }
-                        else
-                        {
-                            _logger.LogError($"Error de concurrencia al aplicar el parche al empleado " +
-                                $"con ID: {id}. Detalles: {ex.Message}");
-                            return StatusCode(StatusCodes.Status500InternalServerError,
-                                "Error interno del servidor al aplicar el parche al empleado.");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError($"Error al aplicar el parche al empleado con ID {id}: " +
-                            $"{ex.Message}");
-                        transaction.Rollback();
-                        return StatusCode(StatusCodes.Status500InternalServerError,
-                            "Error interno del servidor al aplicar el parche al empleado.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error al aplicar el parche al empleado con ID {id}: " +
-                           $"{ex.Message}");
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error interno del servidor al aplicar el parche al empleado.");
-
-            }
-        }
+        
     }
 }

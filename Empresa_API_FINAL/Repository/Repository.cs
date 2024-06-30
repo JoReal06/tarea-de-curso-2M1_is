@@ -25,8 +25,16 @@ namespace Empresa_API_FINAL.Repository
 
         public async Task CreateAsync(T entity)
         {
-            await dbSet.AddAsync(entity);
-            await SaveChangesAsync();
+            try
+            {
+                await dbSet.AddAsync(entity);
+                await SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+
+                await Console.Out.WriteLineAsync( ex.InnerException?.Message);
+            }
         }
 
         public async Task DeleteAsync(T entity)

@@ -41,6 +41,10 @@
             txtBonificaciones = new TextBox();
             txtViaticoAlimeticio = new TextBox();
             panel1 = new Panel();
+            label22 = new Label();
+            txtDiasTrabajdos = new TextBox();
+            label21 = new Label();
+            txtViaticoPorHospedaje = new TextBox();
             txtSalarioBase = new TextBox();
             label18 = new Label();
             lblFcha = new Label();
@@ -49,9 +53,9 @@
             label16 = new Label();
             label15 = new Label();
             label14 = new Label();
-            btnIngresar = new Button();
+            btnAgregar = new Button();
             label13 = new Label();
-            textBox1 = new TextBox();
+            txtDaños = new TextBox();
             txtPensionAlimenticia = new TextBox();
             label12 = new Label();
             label11 = new Label();
@@ -65,7 +69,7 @@
             label3 = new Label();
             LblComisiones = new Label();
             label1 = new Label();
-            cbxId = new ComboBox();
+            cmbEmpleados = new ComboBox();
             label2 = new Label();
             FechaHora = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -125,7 +129,7 @@
             txtPrestamoBancario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPrestamoBancario.BackColor = Color.Silver;
             txtPrestamoBancario.Font = new Font("Century Gothic", 10.2F);
-            txtPrestamoBancario.Location = new Point(164, 230);
+            txtPrestamoBancario.Location = new Point(163, 255);
             txtPrestamoBancario.Margin = new Padding(3, 2, 3, 2);
             txtPrestamoBancario.Name = "txtPrestamoBancario";
             txtPrestamoBancario.Size = new Size(119, 24);
@@ -137,7 +141,7 @@
             txtPrestamoEmpresario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtPrestamoEmpresario.BackColor = Color.Silver;
             txtPrestamoEmpresario.Font = new Font("Century Gothic", 10.2F);
-            txtPrestamoEmpresario.Location = new Point(438, 230);
+            txtPrestamoEmpresario.Location = new Point(437, 255);
             txtPrestamoEmpresario.Margin = new Padding(3, 2, 3, 2);
             txtPrestamoEmpresario.Name = "txtPrestamoEmpresario";
             txtPrestamoEmpresario.Size = new Size(119, 24);
@@ -154,7 +158,6 @@
             txtRiesgoLaboral.Name = "txtRiesgoLaboral";
             txtRiesgoLaboral.Size = new Size(137, 24);
             txtRiesgoLaboral.TabIndex = 7;
-            txtRiesgoLaboral.TextChanged += textBox7_TextChanged;
             txtRiesgoLaboral.KeyPress += ValidarNumerico_KeyPress;
             // 
             // txtHorasExtra
@@ -208,6 +211,10 @@
             // panel1
             // 
             panel1.BackColor = Color.LavenderBlush;
+            panel1.Controls.Add(label22);
+            panel1.Controls.Add(txtDiasTrabajdos);
+            panel1.Controls.Add(label21);
+            panel1.Controls.Add(txtViaticoPorHospedaje);
             panel1.Controls.Add(txtSalarioBase);
             panel1.Controls.Add(label18);
             panel1.Controls.Add(lblFcha);
@@ -216,9 +223,9 @@
             panel1.Controls.Add(label16);
             panel1.Controls.Add(label15);
             panel1.Controls.Add(label14);
-            panel1.Controls.Add(btnIngresar);
+            panel1.Controls.Add(btnAgregar);
             panel1.Controls.Add(label13);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(txtDaños);
             panel1.Controls.Add(txtPensionAlimenticia);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(label11);
@@ -232,7 +239,7 @@
             panel1.Controls.Add(label3);
             panel1.Controls.Add(LblComisiones);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(cbxId);
+            panel1.Controls.Add(cmbEmpleados);
             panel1.Controls.Add(txtPrestamoEmpresario);
             panel1.Controls.Add(txtRiesgoLaboral);
             panel1.Controls.Add(txtOtrosIngresos);
@@ -249,6 +256,46 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(875, 393);
             panel1.TabIndex = 12;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(364, 161);
+            label22.Name = "label22";
+            label22.Size = new Size(89, 15);
+            label22.TabIndex = 45;
+            label22.Text = "dias trabajados:";
+            // 
+            // txtDiasTrabajdos
+            // 
+            txtDiasTrabajdos.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDiasTrabajdos.BackColor = Color.Silver;
+            txtDiasTrabajdos.Font = new Font("Century Gothic", 10.2F);
+            txtDiasTrabajdos.Location = new Point(470, 155);
+            txtDiasTrabajdos.Margin = new Padding(3, 2, 3, 2);
+            txtDiasTrabajdos.Name = "txtDiasTrabajdos";
+            txtDiasTrabajdos.Size = new Size(156, 24);
+            txtDiasTrabajdos.TabIndex = 44;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(41, 196);
+            label21.Name = "label21";
+            label21.Size = new Size(126, 15);
+            label21.TabIndex = 43;
+            label21.Text = "Viatico por Hospedaje:";
+            // 
+            // txtViaticoPorHospedaje
+            // 
+            txtViaticoPorHospedaje.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtViaticoPorHospedaje.BackColor = Color.Silver;
+            txtViaticoPorHospedaje.Font = new Font("Century Gothic", 10.2F);
+            txtViaticoPorHospedaje.Location = new Point(167, 193);
+            txtViaticoPorHospedaje.Margin = new Padding(3, 2, 3, 2);
+            txtViaticoPorHospedaje.Name = "txtViaticoPorHospedaje";
+            txtViaticoPorHospedaje.Size = new Size(156, 24);
+            txtViaticoPorHospedaje.TabIndex = 42;
             // 
             // txtSalarioBase
             // 
@@ -299,7 +346,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(153, 194);
+            label17.Location = new Point(152, 219);
             label17.Name = "label17";
             label17.Size = new Size(662, 15);
             label17.TabIndex = 32;
@@ -319,7 +366,7 @@
             label15.AutoSize = true;
             label15.BackColor = Color.LightSteelBlue;
             label15.Font = new Font("Century", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.Location = new Point(39, 194);
+            label15.Location = new Point(38, 219);
             label15.Name = "label15";
             label15.Size = new Size(108, 18);
             label15.TabIndex = 30;
@@ -336,45 +383,45 @@
             label14.TabIndex = 29;
             label14.Text = "Ingresos";
             // 
-            // btnIngresar
+            // btnAgregar
             // 
-            btnIngresar.BackColor = Color.SlateGray;
-            btnIngresar.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnIngresar.ForeColor = SystemColors.InactiveBorder;
-            btnIngresar.Location = new Point(364, 306);
-            btnIngresar.Margin = new Padding(3, 2, 3, 2);
-            btnIngresar.Name = "btnIngresar";
-            btnIngresar.Size = new Size(132, 38);
-            btnIngresar.TabIndex = 28;
-            btnIngresar.Text = "Ingresar";
-            btnIngresar.UseVisualStyleBackColor = false;
-            btnIngresar.Click += btnIngresar_Click;
+            btnAgregar.BackColor = Color.SlateGray;
+            btnAgregar.Font = new Font("Century Gothic", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAgregar.ForeColor = SystemColors.InactiveBorder;
+            btnAgregar.Location = new Point(364, 306);
+            btnAgregar.Margin = new Padding(3, 2, 3, 2);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(132, 38);
+            btnAgregar.TabIndex = 28;
+            btnAgregar.Text = "Guardar";
+            btnAgregar.UseVisualStyleBackColor = false;
+            btnAgregar.Click += btnIngresar_Click;
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(40, 267);
+            label13.Location = new Point(39, 292);
             label13.Name = "label13";
             label13.Size = new Size(124, 15);
             label13.TabIndex = 27;
             label13.Text = "Deduccion por Daños:";
             // 
-            // textBox1
+            // txtDaños
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            textBox1.BackColor = Color.Silver;
-            textBox1.Font = new Font("Century Gothic", 10.2F);
-            textBox1.Location = new Point(182, 264);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(119, 24);
-            textBox1.TabIndex = 26;
-            textBox1.KeyPress += ValidarNumerico_KeyPress;
+            txtDaños.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDaños.BackColor = Color.Silver;
+            txtDaños.Font = new Font("Century Gothic", 10.2F);
+            txtDaños.Location = new Point(181, 289);
+            txtDaños.Margin = new Padding(3, 2, 3, 2);
+            txtDaños.Name = "txtDaños";
+            txtDaños.Size = new Size(119, 24);
+            txtDaños.TabIndex = 26;
+            txtDaños.KeyPress += ValidarNumerico_KeyPress;
             // 
             // txtPensionAlimenticia
             // 
             txtPensionAlimenticia.BackColor = Color.Silver;
-            txtPensionAlimenticia.Location = new Point(717, 228);
+            txtPensionAlimenticia.Location = new Point(716, 253);
             txtPensionAlimenticia.Margin = new Padding(3, 2, 3, 2);
             txtPensionAlimenticia.Name = "txtPensionAlimenticia";
             txtPensionAlimenticia.Size = new Size(110, 23);
@@ -384,7 +431,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(588, 233);
+            label12.Location = new Point(587, 258);
             label12.Name = "label12";
             label12.Size = new Size(115, 15);
             label12.TabIndex = 24;
@@ -393,7 +440,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(301, 233);
+            label11.Location = new Point(300, 258);
             label11.Name = "label11";
             label11.Size = new Size(122, 15);
             label11.TabIndex = 23;
@@ -402,7 +449,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(39, 233);
+            label10.Location = new Point(38, 258);
             label10.Name = "label10";
             label10.Size = new Size(109, 15);
             label10.TabIndex = 22;
@@ -489,15 +536,15 @@
             label1.TabIndex = 13;
             label1.Text = "Nombre Empleado:";
             // 
-            // cbxId
+            // cmbEmpleados
             // 
-            cbxId.BackColor = Color.Silver;
-            cbxId.FormattingEnabled = true;
-            cbxId.Location = new Point(190, 45);
-            cbxId.Margin = new Padding(3, 2, 3, 2);
-            cbxId.Name = "cbxId";
-            cbxId.Size = new Size(133, 23);
-            cbxId.TabIndex = 12;
+            cmbEmpleados.BackColor = Color.Silver;
+            cmbEmpleados.FormattingEnabled = true;
+            cmbEmpleados.Location = new Point(190, 45);
+            cmbEmpleados.Margin = new Padding(3, 2, 3, 2);
+            cmbEmpleados.Name = "cmbEmpleados";
+            cmbEmpleados.Size = new Size(133, 23);
+            cmbEmpleados.TabIndex = 12;
             // 
             // label2
             // 
@@ -551,7 +598,7 @@
         private Panel panel1;
         private Label LblComisiones;
         private Label label1;
-        private ComboBox cbxId;
+        private ComboBox cmbEmpleados;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -562,9 +609,9 @@
         private Label label9;
         private Label label11;
         private Label label10;
-        private Button btnIngresar;
+        private Button btnAgregar;
         private Label label13;
-        private TextBox textBox1;
+        private TextBox txtDaños;
         private TextBox txtPensionAlimenticia;
         private Label label12;
         private Label label16;
@@ -576,5 +623,9 @@
         private System.Windows.Forms.Timer FechaHora;
         private Label label18;
         private TextBox txtSalarioBase;
+        private Label label21;
+        private TextBox txtViaticoPorHospedaje;
+        private Label label22;
+        private TextBox txtDiasTrabajdos;
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SharedModels;
 using Empresa_API_FINAL.FIltros;
+using SharedModels.Dto.IngresosDto;
 
 namespace Empresa_API_FINAL.Controllers
 {
@@ -17,12 +18,12 @@ namespace Empresa_API_FINAL.Controllers
     {
         private readonly IEmpleadoRepository _empleadoRepository;
         private readonly IIngresosRepository _ingresosRepository;
-        private readonly ILogger<NominaController> _logger;
+        private readonly ILogger<IngresosController> _logger;
         private readonly IMapper _mapper;
 
         public IngresosController(IEmpleadoRepository empleadoRepository,
             IIngresosRepository ingresosrepo,
-            ILogger<NominaController> logger,
+            ILogger<IngresosController> logger,
             IMapper mapper)
         {
             _ingresosRepository = ingresosrepo;
@@ -32,7 +33,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        [ActividadRegistradaAsync("AllIngresos")]
+        //[ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<IEnumerable<IngresosReadDto>>> GetIngresos()
@@ -43,7 +44,7 @@ namespace Empresa_API_FINAL.Controllers
 
                 var ingresos = await _ingresosRepository.GetAllAsync();
 
-                return Ok(_mapper.Map<IEnumerable<NominaReadDto>>(ingresos));
+                return Ok(_mapper.Map<IEnumerable<IngresosReadDto>>(ingresos));
             }
             catch (Exception ex)
             {
@@ -54,7 +55,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        [ActividadRegistradaAsync("AllIngresos")]
+        //[ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -79,7 +80,7 @@ namespace Empresa_API_FINAL.Controllers
                     return NotFound("ingreso no encontrado.");
                 }
 
-                return Ok(_mapper.Map<NominaReadDto>(ingreso));
+                return Ok(_mapper.Map<IngresosReadDto>(ingreso));
             }
             catch (Exception ex)
             {
@@ -90,7 +91,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        [ActividadRegistradaAsync("AllIngresos")]
+        //[ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -119,7 +120,7 @@ namespace Empresa_API_FINAL.Controllers
 
 
                 var existeIngreso = await _ingresosRepository
-                    .GetAsync(a => a.IngresosId == createDto.IngresoId);
+                    .GetAsync(a => a.EmpleadoId == createDto.EmpleadoId);
 
 
                 if (existeIngreso != null)
@@ -142,7 +143,7 @@ namespace Empresa_API_FINAL.Controllers
                 await _ingresosRepository.CreateAsync(nuevoIngreso);
 
                 _logger.LogInformation($"Nuevo ingreso creado con ID: " +
-                    $"{nuevoIngreso.Id}");
+                    $"{nuevoIngreso.IngresosId}");
                 return CreatedAtAction(nameof(GetIngreso),
                     new { id = nuevoIngreso.IngresosId }, nuevoIngreso);
             }
@@ -155,7 +156,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        [ActividadRegistradaAsync("AllIngresos")]
+        //[ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -222,7 +223,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ActividadRegistradaAsync("AllIngresos")]
+        //[ActividadRegistradaAsync("AllIngresos")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -235,7 +236,7 @@ namespace Empresa_API_FINAL.Controllers
                 var Ingreso = await _ingresosRepository.GetById(id);
                 if (Ingreso == null)
                 {
-                    _logger.LogInformation($"Eliminando ingreso con ID: {id}");
+                    _logger.LogInformation($"EL ingreso con el {id} no se encontro");
                     return NotFound("Ingreso no encontrado.");
                 }
 

@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CRUDForm));
             label1 = new Label();
             cmb_tablas = new ComboBox();
-            dataGridView1 = new DataGridView();
-            textBox1 = new TextBox();
-            button1 = new Button();
+            dtgvTablas = new DataGridView();
+            txt_cambio = new TextBox();
+            btnModificar = new Button();
             cmb_elemntos = new ComboBox();
             label2 = new Label();
-            button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnBorrar = new Button();
+            picture_load = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)dtgvTablas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picture_load).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -55,35 +58,36 @@
             cmb_tablas.Items.AddRange(new object[] { "tabla de empleados", "tabla de Ingresos", "tabla de Deducciones", "tabla de nominas" });
             cmb_tablas.Location = new Point(119, 31);
             cmb_tablas.Name = "cmb_tablas";
-            cmb_tablas.Size = new Size(157, 23);
+            cmb_tablas.Size = new Size(177, 23);
             cmb_tablas.TabIndex = 1;
             cmb_tablas.SelectedIndexChanged += cmb_tablas_SelectedIndexChanged;
             // 
-            // dataGridView1
+            // dtgvTablas
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Bottom;
-            dataGridView1.Location = new Point(0, 134);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(688, 224);
-            dataGridView1.TabIndex = 2;
+            dtgvTablas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgvTablas.Dock = DockStyle.Bottom;
+            dtgvTablas.Location = new Point(0, 169);
+            dtgvTablas.Name = "dtgvTablas";
+            dtgvTablas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dtgvTablas.Size = new Size(814, 275);
+            dtgvTablas.TabIndex = 2;
             // 
-            // textBox1
+            // txt_cambio
             // 
-            textBox1.Location = new Point(531, 59);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(145, 23);
-            textBox1.TabIndex = 3;
+            txt_cambio.Location = new Point(531, 59);
+            txt_cambio.Name = "txt_cambio";
+            txt_cambio.Size = new Size(145, 23);
+            txt_cambio.TabIndex = 3;
             // 
-            // button1
+            // btnModificar
             // 
-            button1.Location = new Point(440, 105);
-            button1.Name = "button1";
-            button1.Size = new Size(91, 23);
-            button1.TabIndex = 4;
-            button1.Text = "modificar";
-            button1.UseVisualStyleBackColor = true;
+            btnModificar.Location = new Point(440, 105);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(91, 23);
+            btnModificar.TabIndex = 4;
+            btnModificar.Text = "modificar";
+            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // cmb_elemntos
             // 
@@ -103,31 +107,45 @@
             label2.TabIndex = 5;
             label2.Text = "Seleccion elemento a modificar de la tabla";
             // 
-            // button2
+            // btnBorrar
             // 
-            button2.Location = new Point(333, 105);
-            button2.Name = "button2";
-            button2.Size = new Size(91, 23);
-            button2.TabIndex = 7;
-            button2.Text = "Borrar";
-            button2.UseVisualStyleBackColor = true;
+            btnBorrar.Location = new Point(333, 105);
+            btnBorrar.Name = "btnBorrar";
+            btnBorrar.Size = new Size(91, 23);
+            btnBorrar.TabIndex = 7;
+            btnBorrar.Text = "Borrar";
+            btnBorrar.UseVisualStyleBackColor = true;
+            btnBorrar.Click += txtBorrar_Click;
+            // 
+            // picture_load
+            // 
+            picture_load.Image = (Image)resources.GetObject("picture_load.Image");
+            picture_load.Location = new Point(138, 60);
+            picture_load.Name = "picture_load";
+            picture_load.Size = new Size(107, 92);
+            picture_load.SizeMode = PictureBoxSizeMode.StretchImage;
+            picture_load.TabIndex = 8;
+            picture_load.TabStop = false;
             // 
             // CRUDForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(688, 358);
-            Controls.Add(button2);
+            ClientSize = new Size(814, 444);
+            Controls.Add(picture_load);
+            Controls.Add(btnBorrar);
             Controls.Add(cmb_elemntos);
             Controls.Add(label2);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(btnModificar);
+            Controls.Add(txt_cambio);
+            Controls.Add(dtgvTablas);
             Controls.Add(cmb_tablas);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "CRUDForm";
             Text = "CRUDForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgvTablas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picture_load).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,11 +154,12 @@
 
         private Label label1;
         private ComboBox cmb_tablas;
-        private DataGridView dataGridView1;
-        private TextBox textBox1;
-        private Button button1;
+        private DataGridView dtgvTablas;
+        private TextBox txt_cambio;
+        private Button btnModificar;
         private ComboBox cmb_elemntos;
         private Label label2;
-        private Button button2;
+        private Button btnBorrar;
+        private PictureBox picture_load;
     }
 }

@@ -23,7 +23,8 @@ namespace Empresa_API_FINAL.Migrations
                     PrestamoBancario = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     PrestamoEmpresario = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     PensionAlimenticia = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    DeduccionPorDaños = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    DeduccionPorDaños = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    despreciacionVehiculo = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -40,14 +41,14 @@ namespace Empresa_API_FINAL.Migrations
                     segundoNombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     primerApellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     segundoApellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    numCedula = table.Column<int>(type: "int", nullable: false),
-                    numInss = table.Column<int>(type: "int", nullable: false),
-                    numRuc = table.Column<int>(type: "int", nullable: false),
+                    numCedula = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    numInss = table.Column<long>(type: "bigint", nullable: false),
+                    numRuc = table.Column<long>(type: "bigint", nullable: false),
                     sexo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     estadoCivil = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    telefono = table.Column<int>(type: "int", nullable: true),
-                    celular = table.Column<int>(type: "int", nullable: true),
+                    telefono = table.Column<long>(type: "bigint", nullable: true),
+                    celular = table.Column<long>(type: "bigint", nullable: true),
                     fechaDeNacimiento = table.Column<DateOnly>(type: "date", nullable: false),
                     fechaDeContratacion = table.Column<DateOnly>(type: "date", nullable: false),
                     fechaDeCierreDeContrato = table.Column<DateOnly>(type: "date", nullable: false),
@@ -67,13 +68,14 @@ namespace Empresa_API_FINAL.Migrations
                     EmpleadoId = table.Column<int>(type: "int", nullable: false),
                     nombreDeEmpleado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApellidoDeEmpleado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SalarioBase = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    SalarioBase = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Comisiones = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     HorasExtra = table.Column<int>(type: "int", nullable: true),
                     Bonificaciones = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     DepreciacionVehiculo = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     ViaticoCombustible = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     ViaticoAlimenticio = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    ViaticoPorHospedaje = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     RiesgoLaboral = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     OtrosIngresos = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
@@ -92,7 +94,8 @@ namespace Empresa_API_FINAL.Migrations
                     NombreDeEmpleado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     apellidoDeEmpleado = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     inns = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ir = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    ir = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
+                    SalarioFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
                 },
                 constraints: table =>
                 {

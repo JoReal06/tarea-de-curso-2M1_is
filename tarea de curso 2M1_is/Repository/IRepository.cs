@@ -13,5 +13,6 @@ namespace tarea_de_curso_2M1_is
         Task<T> CreateAsync(object dto);
         Task<bool> UpdateAsync(int id, object dto);
         Task<bool> DeleteAsync(int id);
+        Task<bool> ExistsAsync(int id);
     }
 }

@@ -22,18 +22,18 @@ namespace SharedModels.Dto.EmpleadoDto
         [StringLength(50)]
         public string? segundoApellido { set; get; }
         [Required]
-        public int numCedula { set; get; }
+        public string numCedula { set; get; }
         [Required]
-        public int numInss { set; get; }
+        public long numInss { set; get; }
         [Required]
-        public int numRuc { set; get; }
+        public long numRuc { set; get; }
         [Required]
         public string sexo { set; get; }
         public string? estadoCivil { set; get; }
         [StringLength(100)]
         public string? direccion { set; get; }
-        public int? telefono { set; get; }
-        public int? celular { set; get; }
+        public long? telefono { set; get; }
+        public long? celular { set; get; }
         [Required]
         public DateOnly fechaDeNacimiento { set; get; }
         [Required]

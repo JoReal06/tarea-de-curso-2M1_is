@@ -29,7 +29,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet]
-        [ActividadRegistradaAsync("AllDeducciones")]
+        //[ActividadRegistradaAsync("AllDeducciones")]
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -54,7 +54,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        [ActividadRegistradaAsync("AllDeducciones")]
+        //[ActividadRegistradaAsync("AllDeducciones")]
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -90,7 +90,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        [ActividadRegistradaAsync("AllDeducciones")]
+        //[ActividadRegistradaAsync("AllDeducciones")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -105,9 +105,8 @@ namespace Empresa_API_FINAL.Controllers
 
             try
             {
-                _logger.LogInformation($"Creando una nueva deduccion");
+                _logger.LogInformation($"Creando una nueva deduccion para el empleado {createDto.nombreDeEmpleado}");
 
-                // Verificar si el estudiante ya existe
                 var ExistenciaDeDuduccion = await _deduccionesRepository
                     .GetAsync(s => s.empleadoId == createDto.empleadoId);
 
@@ -118,14 +117,11 @@ namespace Empresa_API_FINAL.Controllers
                     return BadRequest(ModelState);
                 }
 
-                // Verificar la validez del modelo
                 if (!ModelState.IsValid)
                 {
                     _logger.LogError("El modelo de la deduccion no es válida.");
                     return BadRequest(ModelState);
                 }
-
-                // Crear el nuevo estudiante
                 var nuevaDeducion = _mapper.Map<Deducciones>(createDto);
 
                 await _deduccionesRepository.CreateAsync(nuevaDeducion);
@@ -143,7 +139,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        [ActividadRegistradaAsync("AllDeducciones")]
+        //[ActividadRegistradaAsync("AllDeducciones")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -159,7 +155,7 @@ namespace Empresa_API_FINAL.Controllers
 
             try
             {
-                _logger.LogInformation($"Actualizando deducion del empleado con ID: {updateDto.empleadoId}");
+                _logger.LogInformation($"Actualizando deducion del empleado con ID: {updateDto.nombreDeEmpleado}");
 
                 var existenciaDeDeduccion = await _deduccionesRepository.GetById(id);
                 if (existenciaDeDeduccion == null)
@@ -168,7 +164,6 @@ namespace Empresa_API_FINAL.Controllers
                     return NotFound("la deduccion no existe.");
                 }
 
-                // Actualizar solo las propiedades necesarias del estudiante existente
                 _mapper.Map(updateDto, existenciaDeDeduccion);
 
                 await _deduccionesRepository.SaveChangesAsync();
@@ -201,7 +196,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ActividadRegistradaAsync("AllDeducciones")]
+       // [ActividadRegistradaAsync("AllDeducciones")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -215,7 +210,7 @@ namespace Empresa_API_FINAL.Controllers
                 var deduccion = await _deduccionesRepository.GetById(id);
                 if (deduccion == null)
                 {
-                    _logger.LogInformation($"Eliminando deduccion con ID: {id}");
+                    _logger.LogInformation($"La deduccion con el : {id} no se encontro");
                     return NotFound("deducion no encontrado.");
                 }
 
@@ -232,87 +227,5 @@ namespace Empresa_API_FINAL.Controllers
             }
         }
 
-        [HttpPatch("{id}")]
-        [ActividadRegistradaAsync("AllDeducciones")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PatchDeduccion(int id,
-            JsonPatchDocument<DeduccionesUpdateDto> patchDto)
-        {
-            if (id <= 0)
-            {
-                return BadRequest("ID de la deduccion  no es válido.");
-            }
-
-            try
-            {
-                _logger.LogInformation($"Aplicando el patche a la deduccion con ID: {id}");
-
-                var deduccion = await _deduccionesRepository.GetById(id);
-                if (deduccion == null)
-                {
-                    _logger.LogWarning($"No se encontró ningúna deduccion con ID: {id}");
-                    return NotFound("la deduccion no se encontró");
-                }
-
-                var deduccionDto = _mapper.Map<DeduccionesUpdateDto>(deduccion);
-
-                patchDto.ApplyTo(deduccionDto, ModelState);
-
-                if (!ModelState.IsValid)
-                {
-                    _logger.LogError("El modelo de la deduccion después de aplicar el parche no es válido.");
-                    return BadRequest(ModelState);
-                }
-
-                _mapper.Map(deduccionDto, deduccion); 
-
-                using (var transaction = await _deduccionesRepository.BeginTransactionAsync())
-                {
-                    try
-                    {
-                        await _deduccionesRepository.SaveChangesAsync();
-                        transaction.Commit();
-                        _logger.LogInformation($"Parche aplicado correctamente a la deduccion " +
-                            $"con ID: {id}");
-                        return NoContent();
-                    }
-                    catch (DbUpdateConcurrencyException ex)
-                    {
-                        if (!await _deduccionesRepository.ExistsAsync(s => s.deduccionesId == id))
-                        {
-                            _logger.LogWarning($"No se encontró ninguna deduccion con el ID: {id}");
-                            return NotFound();
-                        }
-                        else
-                        {
-                            _logger.LogError($"Error de concurrencia al aplicar el parche a la deduccion  " +
-                                $"con ID: {id}. Detalles: {ex.Message}");
-                            return StatusCode(StatusCodes.Status500InternalServerError,
-                                "Error interno del servidor al aplicar el parche al empleado.");
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError($"Error al aplicar el parche a la deduccion  con ID {id}: " +
-                            $"{ex.Message}");
-                        transaction.Rollback();
-                        return StatusCode(StatusCodes.Status500InternalServerError,
-                            "Error interno del servidor al aplicar el parche.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error al aplicar el parche " +
-                           $"{ex.Message}");
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error interno del servidor al aplicar el parche.");
-
-            }
-        }
     }
 }

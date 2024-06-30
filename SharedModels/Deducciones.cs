@@ -17,6 +17,7 @@ namespace SharedModels
         public decimal? PrestamoEmpresario { set; get; }
         public decimal? PensionAlimenticia { set; get; }
         public decimal? DeduccionPorDaños { set; get; }
+        public decimal? despreciacionVehiculo { set; get; }
 
        
 

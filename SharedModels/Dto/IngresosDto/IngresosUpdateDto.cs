@@ -19,14 +19,15 @@ namespace SharedModels.Dto.IngresosDto
         [Required]
         [StringLength(50)]
         public string? ApellidoDeEmpleado { set; get; }
-        public decimal SalarioBase { set; get; }
+        public decimal? SalarioBase { set; get; }
         public decimal? Comisiones { set; get; }
-        public int HorasExtra { set; get; }
+        public int? HorasExtra { set; get; }
         public decimal? Bonificaciones { set; get; }
         public decimal? DepreciacionVehiculo { set; get; }
         public decimal? ViaticoCombustible { set; get; }
         public decimal? ViaticoAlimenticio { set; get; }
+        public decimal? ViaticoPorHospedaje { set; get; }
         public decimal? RiesgoLaboral { set; get; }
-        public decimal OtrosIngresos { set; get; }
+        public decimal? OtrosIngresos { set; get; }
     }
 }

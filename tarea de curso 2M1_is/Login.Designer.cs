@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             label1 = new Label();
             label2 = new Label();
             txt_nombre = new TextBox();
@@ -35,6 +36,8 @@
             label3 = new Label();
             btn_incio = new Button();
             lb_aviso = new Label();
+            picture_load = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picture_load).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -68,6 +71,7 @@
             // 
             txt_contraseña.Location = new Point(142, 80);
             txt_contraseña.Name = "txt_contraseña";
+            txt_contraseña.PasswordChar = '*';
             txt_contraseña.Size = new Size(196, 23);
             txt_contraseña.TabIndex = 4;
             txt_contraseña.KeyDown += txt_contraseña_KeyDown;
@@ -89,24 +93,35 @@
             btn_incio.TabIndex = 5;
             btn_incio.Text = "Enviar";
             btn_incio.UseVisualStyleBackColor = true;
-            
+            btn_incio.Click += btn_incio_Click;
             // 
             // lb_aviso
             // 
             lb_aviso.AutoSize = true;
             lb_aviso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lb_aviso.ForeColor = Color.Red;
-            lb_aviso.Location = new Point(27, 117);
+            lb_aviso.Location = new Point(27, 106);
             lb_aviso.Name = "lb_aviso";
             lb_aviso.Size = new Size(318, 17);
             lb_aviso.TabIndex = 6;
             lb_aviso.Text = "LA CONTRASEÑA O EL USUARIO SON INCORRECTOS";
+            // 
+            // picture_load
+            // 
+            picture_load.Image = (Image)resources.GetObject("picture_load.Image");
+            picture_load.Location = new Point(86, 126);
+            picture_load.Name = "picture_load";
+            picture_load.Size = new Size(95, 70);
+            picture_load.SizeMode = PictureBoxSizeMode.StretchImage;
+            picture_load.TabIndex = 7;
+            picture_load.TabStop = false;
             // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(394, 206);
+            Controls.Add(picture_load);
             Controls.Add(lb_aviso);
             Controls.Add(btn_incio);
             Controls.Add(txt_contraseña);
@@ -116,6 +131,7 @@
             Controls.Add(label1);
             Name = "Login";
             Text = "Login";
+            ((System.ComponentModel.ISupportInitialize)picture_load).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -129,5 +145,6 @@
         private Label label3;
         private Button btn_incio;
         private Label lb_aviso;
+        private PictureBox picture_load;
     }
 }

@@ -13,11 +13,12 @@ namespace tarea_de_curso_2M1_is
 {
     public partial class Principal : Form
     {
-        public Principal()
+        private readonly ApiClient _apiclient;
+        public Principal(ApiClient apiclient)
         {
             InitializeComponent();
             this.Resize += new EventHandler(this.Principal_Resize);
-
+            _apiclient = apiclient;
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -93,7 +94,7 @@ namespace tarea_de_curso_2M1_is
         }
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            AbrirFormInPanel(new Registro(this));
+            AbrirFormInPanel(new Registro(this, _apiclient));
         }
 
         private void Principal_Resize(object sender, EventArgs e)
@@ -113,12 +114,12 @@ namespace tarea_de_curso_2M1_is
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AbrirFormInPanel(new Nominas(this));
+            AbrirFormInPanel(new Nominas(this, _apiclient));
         }
 
         private void btnOpcional_Click(object sender, EventArgs e)
         {
-            AbrirFormInPanel(new CRUDForm());
+            AbrirFormInPanel(new CRUDForm(_apiclient,this));
         }
     }
 }

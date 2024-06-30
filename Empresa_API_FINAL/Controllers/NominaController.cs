@@ -55,7 +55,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpGet("{id}")]
-        [ActividadRegistradaAsync("ALLNominas")]
+       // [ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -91,7 +91,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPost]
-        [ActividadRegistradaAsync("ALLNominas")]
+        //[ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -158,7 +158,7 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpPut("{id}")]
-        [ActividadRegistradaAsync("ALLNominas")]
+        //[ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -223,12 +223,12 @@ namespace Empresa_API_FINAL.Controllers
         }
 
         [HttpDelete("{id}")]
-        [ActividadRegistradaAsync("ALLNominas")]
+        //[ActividadRegistradaAsync("ALLNominas")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Deletenomina(int id)
-        {
+         {
             try
             {
                 _logger.LogInformation($"Eliminando nomina con ID: {id}");
@@ -236,7 +236,7 @@ namespace Empresa_API_FINAL.Controllers
                 var nomina = await _nominarepositosy.GetById(id);
                 if (nomina == null)
                 {
-                    _logger.LogInformation($"Eliminando nomina con ID: {id}");
+                    _logger.LogInformation($"La nomina con el: {id}  no se encontro");
                     return NotFound("nomina no encontrada.");
                 }
 

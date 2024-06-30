@@ -9,13 +9,18 @@ namespace SharedModels.Dto.DeduccionesDto
 {
     public class DeduccionesCreateDto
     {
-  
+        [Required]
         public int empleadoId { set; get; }
+        [Required]
+        [StringLength(50)]
         public string nombreDeEmpleado { set; get; }
+        [Required]
+        [StringLength(50)]
         public string ApellidoDeEmpleado { set; get; }
         public decimal? PrestamoBancario { set; get; }
         public decimal? PrestamoEmpresario { set; get; }
         public decimal? PensionAlimenticia { set; get; }
         public decimal? DeduccionPorDaños { set; get; }
+        public decimal? despreciacionVehiculo { set; get; }
     }
 }

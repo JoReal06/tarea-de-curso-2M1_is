@@ -9,8 +9,8 @@ namespace SharedModels.Dto.NominaDto
 {
     public class NominaReadDto
     {
-        [Required]
-        public int NominaId { get; set; }
+        [Key]
+        public int Id { get; set; }
         [Required]
         public int EmpleadoId { set; get; }
         [Required]
